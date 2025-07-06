@@ -2,39 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-/* FUTURISTIC COLOR PALETTE - Applied exactly as specified */
+/* UPDATED FUTURISTIC COLOR PALETTE - Deep Charcoal Base */
 @layer base {
   :root {
-    --background: 0 0 0; /* #000000 - Jet Black Background */
+    --background: 18 18 18; /* #121212 - Deep Charcoal Background */
     --foreground: 255 255 255; /* #FFFFFF - White Text */
 
-    --card: 0 0 0; /* #000000 - Black Cards */
+    --card: 18 18 18; /* #121212 - Deep Charcoal Cards */
     --card-foreground: 255 255 255; /* #FFFFFF */
 
-    --popover: 0 0 0; /* #000000 */
+    --popover: 18 18 18; /* #121212 */
     --popover-foreground: 255 255 255; /* #FFFFFF */
 
     --primary: 255 255 255; /* #FFFFFF - White Primary */
-    --primary-foreground: 0 0 0; /* #000000 */
+    --primary-foreground: 18 18 18; /* #121212 */
 
     --secondary: 224 224 224; /* #E0E0E0 - Silver Light */
-    --secondary-foreground: 0 0 0; /* #000000 */
+    --secondary-foreground: 18 18 18; /* #121212 */
 
     --muted: 192 192 192; /* #C0C0C0 - Silver Dark */
-    --muted-foreground: 0 0 0; /* #000000 */
+    --muted-foreground: 18 18 18; /* #121212 */
 
-    --accent: 176 238 255; /* #B0EEFF - Neon Blue */
-    --accent-foreground: 0 0 0; /* #000000 */
+    --accent: 176 238 255; /* #B0EEFF - Highlight Blue */
+    --accent-foreground: 18 18 18; /* #121212 */
 
-    --destructive: 255 126 121; /* #FF7E79 - Neon Coral */
+    --destructive: 255 126 121; /* #FF7E79 - Coral Accent */
     --destructive-foreground: 255 255 255; /* #FFFFFF */
 
     --border: 192 192 192; /* #C0C0C0 - Silver Dark */
-    --input: 0 0 0; /* #000000 - Black Input Background */
-    --ring: 176 238 255; /* #B0EEFF - Neon Blue */
+    --input: 18 18 18; /* #121212 - Deep Charcoal Input Background */
+    --ring: 176 238 255; /* #B0EEFF - Highlight Blue */
 
-    --navbar-bg: 0 0 0; /* #000000 - Black Navbar */
-    --navbar-border: 255 215 0; /* #FFD700 - Neon Yellow */
+    --navbar-bg: 18 18 18; /* #121212 - Deep Charcoal Navbar */
+    --navbar-border: 255 215 0; /* #FFD700 - Highlight Yellow */
 
     --radius: 0.5rem;
   }
@@ -47,7 +47,7 @@
   }
 
   html {
-    background: #000000;
+    background: #121212;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     overflow-x: hidden;
@@ -58,7 +58,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #000000;
+    background: #121212;
     color: #FFFFFF;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
@@ -88,7 +88,7 @@
 }
 
 .glass-strong {
-  background: rgba(224, 224, 224, 0.08);
+  background: rgba(18, 18, 18, 0.9);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border: 1px solid rgba(192, 192, 192, 0.3);
@@ -96,7 +96,7 @@
 }
 
 .glass-navbar {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(18, 18, 18, 0.95);
   backdrop-filter: blur(30px) saturate(180%);
   -webkit-backdrop-filter: blur(30px) saturate(180%);
   border-bottom: 1px solid rgba(255, 215, 0, 0.3);
@@ -104,7 +104,7 @@
 }
 
 .glass-card {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(18, 18, 18, 0.8);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
   border: 1px solid rgba(192, 192, 192, 0.2);
@@ -112,7 +112,7 @@
 }
 
 .glass-chat {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(18, 18, 18, 0.95);
   backdrop-filter: blur(25px) saturate(180%);
   -webkit-backdrop-filter: blur(25px) saturate(180%);
   border: 1px solid rgba(176, 238, 255, 0.3);
@@ -220,7 +220,7 @@
 
 /* FUTURISTIC BUTTON STYLES */
 .btn-glass {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(18, 18, 18, 0.8);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border: 1px solid rgba(192, 192, 192, 0.3);
@@ -237,7 +237,7 @@
 
 .btn-glass-primary {
   background: linear-gradient(135deg, #B0EEFF 0%, #FFD700 100%);
-  color: #000000;
+  color: #121212;
   border: 1px solid rgba(255, 215, 0, 0.8);
   font-weight: 600;
 }
@@ -251,8 +251,8 @@
 /* HERO GRADIENT */
 .hero-gradient {
   background: linear-gradient(135deg, 
-    rgba(0, 0, 0, 1) 0%, 
-    rgba(0, 0, 0, 0.95) 50%, 
+    rgba(18, 18, 18, 1) 0%, 
+    rgba(18, 18, 18, 0.95) 50%, 
     rgba(176, 238, 255, 0.1) 100%
   );
 }
@@ -366,7 +366,7 @@ canvas {
 
 /* FUTURISTIC CARD STYLES */
 .futuristic-card {
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(18, 18, 18, 0.9);
   border: 1px solid rgba(192, 192, 192, 0.2);
   box-shadow: 
     0 0 20px rgba(176, 238, 255, 0.1),
@@ -379,4 +379,21 @@ canvas {
     0 0 30px rgba(176, 238, 255, 0.2),
     0 0 60px rgba(255, 215, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* NEW ARRIVAL BUBBLE FIX */
+.new-arrival-bubble {
+  background: linear-gradient(135deg, #FF7E79 0%, #FFD700 100%);
+  color: #FFFFFF;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.out-of-stock-bubble {
+  background: rgba(255, 126, 121, 0.9);
+  color: #FFFFFF;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }

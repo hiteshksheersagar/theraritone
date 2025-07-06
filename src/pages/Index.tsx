@@ -256,7 +256,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen text-white bg-black">
+    <div className="min-h-screen text-white" style={{ background: '#121212' }}>
       {/* Navigation */}
       <Navbar 
         onSearchOpen={() => setIsSearchOpen(true)}
@@ -265,23 +265,25 @@ const Index = () => {
 
       {/* CINEMATIC 3D HERO SECTION */}
       <div className="relative min-h-screen overflow-hidden flex items-center justify-center">
-        {/* 3D Butterfly Background */}
-        <ButterflyScene />
+        {/* 3D Butterfly Background - Moved Up */}
+        <div style={{ transform: 'translateY(-8vh)' }}>
+          <ButterflyScene />
+        </div>
         
         {/* Dark gradient overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" style={{ zIndex: 2 }} />
 
-        {/* Hero Content */}
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-8" style={{ zIndex: 3 }}>
+        {/* Hero Content - Centered Logo within Butterfly */}
+        <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-8" style={{ zIndex: 3, transform: 'translateY(-5vh)' }}>
           <div className="p-8 sm:p-12 lg:p-16">
             <div className="mb-8">
               <img
                 src="/IMG-20250305-WA0003-removebg-preview.png"
                 alt="RARITONE"
-                className="mx-auto w-full max-w-xs sm:max-w-2xl h-auto float-animation neon-flicker"
+                className="mx-auto w-full max-w-xs sm:max-w-2xl h-auto float-animation"
                 style={{ 
-                  filter: 'drop-shadow(0 0 40px rgba(176, 238, 255, 0.8)) brightness(1.2)',
-                  textShadow: '0 0 20px rgba(255, 215, 0, 0.5)'
+                  filter: 'drop-shadow(0 0 40px rgba(176, 238, 255, 0.6)) brightness(1.1)',
+                  textShadow: '0 0 20px rgba(255, 215, 0, 0.4)'
                 }}
               />
             </div>
@@ -300,7 +302,7 @@ const Index = () => {
                 className="btn-glass font-medium flex items-center space-x-3 rounded-full justify-center w-full max-w-xs sm:min-w-[220px] px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base hover-glow"
                 onClick={() => navigate('/scan')}
                 style={{
-                  background: 'rgba(0, 0, 0, 0.8)',
+                  background: 'rgba(18, 18, 18, 0.8)',
                   border: '1px solid rgba(176, 238, 255, 0.4)',
                   backdropFilter: 'blur(20px)',
                   boxShadow: '0 8px 32px rgba(176, 238, 255, 0.2)'
@@ -315,7 +317,7 @@ const Index = () => {
                 onClick={() => navigate('/catalog')}
                 style={{
                   background: 'linear-gradient(135deg, #B0EEFF 0%, #FFD700 100%)',
-                  color: '#000000',
+                  color: '#121212',
                   border: '1px solid rgba(255, 215, 0, 1)',
                   backdropFilter: 'blur(20px)',
                   boxShadow: '0 8px 32px rgba(255, 215, 0, 0.3)'
@@ -330,7 +332,7 @@ const Index = () => {
             <p className="max-w-md mx-auto leading-relaxed text-xs sm:text-sm px-4 opacity-80"
                style={{ 
                  textShadow: '0 2px 8px rgba(0,0,0,0.8)',
-                 background: 'rgba(0,0,0,0.6)',
+                 background: 'rgba(18,18,18,0.8)',
                  padding: '8px 16px',
                  borderRadius: '8px',
                  backdropFilter: 'blur(10px)',
@@ -344,7 +346,7 @@ const Index = () => {
       </div>
 
       {/* NEW ARRIVALS SECTION */}
-      <section className="py-12 sm:py-20 bg-black">
+      <section className="py-12 sm:py-20" style={{ background: '#121212' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
             <h2 className="text-hero font-light mb-4 text-white flex items-center justify-center neon-flicker">
@@ -373,8 +375,8 @@ const Index = () => {
                     <div className="absolute top-3 left-3">
                       <span className={`font-medium rounded-full px-3 py-1 text-xs backdrop-blur-md ${
                         item.tag === 'Out of Stock' 
-                          ? 'bg-red-500/80 text-white' 
-                          : 'bg-gradient-to-r from-blue-400/20 to-yellow-400/20 text-white border border-blue-400/30'
+                          ? 'out-of-stock-bubble' 
+                          : 'new-arrival-bubble'
                       }`}>
                         {item.tag}
                       </span>
@@ -411,7 +413,7 @@ const Index = () => {
       </section>
 
       {/* CATEGORIES SECTION */}
-      <section className="py-12 sm:py-20 bg-black">
+      <section className="py-12 sm:py-20" style={{ background: '#121212' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
             <h2 className="text-hero font-light mb-4 text-white flex items-center justify-center neon-flicker">
@@ -455,7 +457,7 @@ const Index = () => {
       </section>
 
       {/* BEST PICKS SECTION */}
-      <section className="py-12 sm:py-20 bg-black">
+      <section className="py-12 sm:py-20" style={{ background: '#121212' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
             <h2 className="text-hero font-light mb-4 text-white flex items-center justify-center neon-flicker">
@@ -525,7 +527,7 @@ const Index = () => {
       </section>
 
       {/* FOOTER SECTION */}
-      <footer className="py-8 sm:py-16 border-t border-gray-800 bg-black">
+      <footer className="py-8 sm:py-16 border-t border-gray-800" style={{ background: '#121212' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="futuristic-card rounded-2xl p-6 sm:p-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -534,7 +536,8 @@ const Index = () => {
                 <img
                   src="/IMG-20250305-WA0003-removebg-preview.png"
                   alt="RARITONE"
-                  className="h-16 sm:h-20 w-auto mb-4 neon-flicker"
+                  className="h-16 sm:h-20 w-auto mb-4"
+                  style={{ filter: 'brightness(1.1) contrast(1.05)' }}
                 />
                 <p className="text-gray-300 max-w-md leading-relaxed text-sm sm:text-base">
                   Revolutionizing fashion with AI-powered body scanning technology. 

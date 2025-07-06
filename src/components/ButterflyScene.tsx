@@ -23,10 +23,10 @@ const ButterflyScene: React.FC = () => {
       className="absolute inset-0 w-full h-full overflow-hidden"
       style={{ zIndex: 1 }}
     >
-      {/* Main Butterfly - Positioned Higher, Matching Reference Style */}
+      {/* Main Butterfly - Positioned Higher for Better Visibility */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center"
-        style={{ transform: 'translateY(-15vh)' }} // Moved up significantly
+        style={{ transform: 'translateY(-10vh)' }} // Moved up for better visibility
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 3, ease: "easeOut" }}
@@ -50,7 +50,7 @@ const ButterflyScene: React.FC = () => {
             ease: "easeInOut"
           }}
         >
-          {/* Futuristic Moth/Butterfly SVG */}
+          {/* Futuristic Moth/Butterfly SVG with Updated Color Palette */}
           <svg
             viewBox="0 0 1400 900"
             className="w-full h-full"

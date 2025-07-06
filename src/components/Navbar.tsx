@@ -175,8 +175,8 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
         }`}
         style={{
           background: isHomepage 
-            ? 'rgba(0, 0, 0, 0.9)' 
-            : 'rgba(0, 0, 0, 0.95)',
+            ? 'rgba(18, 18, 18, 0.95)' 
+            : 'rgba(18, 18, 18, 0.98)',
           backdropFilter: 'blur(30px) saturate(180%)',
           borderBottom: '1px solid rgba(176, 238, 255, 0.2)',
           boxShadow: '0 4px 24px rgba(176, 238, 255, 0.1)'
@@ -326,7 +326,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                   whileTap={{ scale: 0.95 }}
                   src="/IMG-20250305-WA0003-removebg-preview.png"
                   alt="RARITONE"
-                  className="cursor-pointer transition-smooth hover-glow float-animation neon-flicker"
+                  className="cursor-pointer transition-smooth hover-glow float-animation"
                   onClick={() => navigate('/')}
                   style={{
                     filter: `brightness(1.15) contrast(1.08) drop-shadow(0 3px 12px rgba(176, 238, 255, 0.3))`,
@@ -413,7 +413,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
               }}
               className="overflow-hidden"
               style={{
-                background: 'rgba(0, 0, 0, 0.95)',
+                background: 'rgba(18, 18, 18, 0.98)',
                 backdropFilter: 'blur(40px) saturate(180%)',
                 WebkitBackdropFilter: 'blur(40px) saturate(180%)',
                 borderTop: '1px solid rgba(176, 238, 255, 0.2)',
@@ -482,7 +482,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
               }}
               className="fixed right-0 top-0 h-full z-50 overflow-y-auto w-full max-w-sm"
               style={{
-                background: 'rgba(0, 0, 0, 0.95)',
+                background: 'rgba(18, 18, 18, 0.98)',
                 backdropFilter: 'blur(25px) saturate(180%)',
                 border: '1px solid rgba(176, 238, 255, 0.2)',
                 boxShadow: '0 16px 48px rgba(176, 238, 255, 0.2)'
