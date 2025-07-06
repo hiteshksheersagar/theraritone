@@ -165,7 +165,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
 
   return (
     <>
-      {/* GLASSMORPHISM NAVBAR */}
+      {/* FUTURISTIC GLASSMORPHISM NAVBAR */}
       <motion.nav
         variants={isHomepage ? navbarVariants : undefined}
         initial={isHomepage ? "hidden" : undefined}
@@ -173,6 +173,14 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
         className={`fixed top-0 left-0 right-0 z-50 h-16 transition-glass ${
           isHomepage ? 'glass-navbar' : 'glass-strong'
         }`}
+        style={{
+          background: isHomepage 
+            ? 'rgba(0, 0, 0, 0.9)' 
+            : 'rgba(0, 0, 0, 0.95)',
+          backdropFilter: 'blur(30px) saturate(180%)',
+          borderBottom: '1px solid rgba(176, 238, 255, 0.2)',
+          boxShadow: '0 4px 24px rgba(176, 238, 255, 0.1)'
+        }}
         data-menu-container
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
@@ -184,7 +192,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleBackClick}
-                  className="flex items-center space-x-2 text-[rgb(236,223,204)] hover:text-white transition-smooth p-2 rounded-lg min-h-[40px] min-w-[40px] hover-glow"
+                  className="flex items-center space-x-2 text-white hover:text-blue-400 transition-smooth p-2 rounded-lg min-h-[40px] min-w-[40px] hover-glow"
                 >
                   <ArrowLeft size={isMobile ? 18 : 20} />
                   {!isMobile && <span className="text-sm font-medium">Back</span>}
@@ -194,7 +202,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleMenuClick}
-                  className="flex items-center space-x-2 text-[rgb(236,223,204)] hover:text-white transition-smooth relative p-2 rounded-lg min-h-[40px] min-w-[40px] hover-glow"
+                  className="flex items-center space-x-2 text-white hover:text-blue-400 transition-smooth relative p-2 rounded-lg min-h-[40px] min-w-[40px] hover-glow"
                 >
                   {/* Smooth Hamburger to Cross Animation */}
                   <div className="relative w-5 h-5 flex flex-col justify-center items-center">
@@ -243,7 +251,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                       animate={{ 
                         opacity: 1,
                         x: 0,
-                        color: isMenuOpen ? 'rgb(236,223,204)' : 'rgb(236,223,204)'
+                        color: isMenuOpen ? '#B0EEFF' : '#FFFFFF'
                       }}
                       transition={{ 
                         duration: 0.2,
@@ -274,7 +282,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                 >
                   {/* Page Title */}
                   <motion.h1 
-                    className="font-light text-[rgb(236,223,204)] transition-smooth text-lg sm:text-xl absolute inset-0 flex items-center justify-center"
+                    className="font-light text-white transition-smooth text-lg sm:text-xl absolute inset-0 flex items-center justify-center neon-blue"
                     animate={{
                       opacity: isHoveringTitle ? 0 : 1,
                       scale: isHoveringTitle ? 0.9 : 1,
@@ -303,7 +311,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                       src="/IMG-20250305-WA0003-removebg-preview.png"
                       alt="RARITONE"
                       style={{
-                        filter: `brightness(1.15) contrast(1.08) drop-shadow(0 3px 12px rgba(0,0,0,0.25))`,
+                        filter: `brightness(1.15) contrast(1.08) drop-shadow(0 3px 12px rgba(176, 238, 255, 0.3))`,
                         height: isMobile ? '64px' : '80px',
                         width: 'auto',
                         maxWidth: isMobile ? '240px' : '360px',
@@ -318,10 +326,10 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                   whileTap={{ scale: 0.95 }}
                   src="/IMG-20250305-WA0003-removebg-preview.png"
                   alt="RARITONE"
-                  className="cursor-pointer transition-smooth hover-glow float-animation"
+                  className="cursor-pointer transition-smooth hover-glow float-animation neon-flicker"
                   onClick={() => navigate('/')}
                   style={{
-                    filter: `brightness(1.15) contrast(1.08) drop-shadow(0 3px 12px rgba(0,0,0,0.25))`,
+                    filter: `brightness(1.15) contrast(1.08) drop-shadow(0 3px 12px rgba(176, 238, 255, 0.3))`,
                     height: isMobile ? '64px' : '80px',
                     width: 'auto',
                     maxWidth: isMobile ? '260px' : '380px',
@@ -337,7 +345,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                 whileHover={{ scale: 1.15, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={onSearchOpen}
-                className="text-[rgb(236,223,204)] hover:text-white transition-smooth p-2 rounded-lg min-h-[40px] min-w-[40px] flex items-center justify-center hover-glow"
+                className="text-white hover:text-blue-400 transition-smooth p-2 rounded-lg min-h-[40px] min-w-[40px] flex items-center justify-center hover-glow"
               >
                 <Search size={isMobile ? 16 : 18} />
               </motion.button>
@@ -346,7 +354,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => navigate('/wishlist')}
-                className="relative text-[rgb(236,223,204)] hover:text-white transition-smooth p-2 rounded-lg min-h-[40px] min-w-[40px] flex items-center justify-center hover-glow"
+                className="relative text-white hover:text-red-400 transition-smooth p-2 rounded-lg min-h-[40px] min-w-[40px] flex items-center justify-center hover-glow"
               >
                 <Heart size={isMobile ? 16 : 18} />
                 {wishlistCount > 0 && (
@@ -365,7 +373,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => navigate('/cart')}
-                className="relative text-[rgb(236,223,204)] hover:text-white transition-smooth p-2 rounded-lg min-h-[40px] min-w-[40px] flex items-center justify-center hover-glow"
+                className="relative text-white hover:text-yellow-400 transition-smooth p-2 rounded-lg min-h-[40px] min-w-[40px] flex items-center justify-center hover-glow"
               >
                 <ShoppingBag size={isMobile ? 16 : 18} />
                 {cartItemsCount > 0 && (
@@ -373,7 +381,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-                    className="absolute -top-1 -right-1 bg-[rgb(236,223,204)] text-[rgb(24,28,20)] text-xs rounded-full h-4 w-4 flex items-center justify-center font-medium glow-pulse"
+                    className="absolute -top-1 -right-1 bg-gradient-to-r from-blue-400 to-yellow-400 text-black text-xs rounded-full h-4 w-4 flex items-center justify-center font-medium glow-pulse"
                   >
                     {cartItemsCount}
                   </motion.span>
@@ -384,7 +392,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={handleProfileClick}
-                className="text-[rgb(236,223,204)] hover:text-white transition-smooth p-2 rounded-lg min-h-[40px] min-w-[40px] flex items-center justify-center hover-glow"
+                className="text-white hover:text-purple-400 transition-smooth p-2 rounded-lg min-h-[40px] min-w-[40px] flex items-center justify-center hover-glow"
               >
                 <User size={isMobile ? 16 : 18} />
               </motion.button>
@@ -405,11 +413,11 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
               }}
               className="overflow-hidden"
               style={{
-                background: 'rgba(24, 28, 20, 0.9)',
+                background: 'rgba(0, 0, 0, 0.95)',
                 backdropFilter: 'blur(40px) saturate(180%)',
                 WebkitBackdropFilter: 'blur(40px) saturate(180%)',
-                borderTop: '1px solid rgba(105, 117, 101, 0.3)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+                borderTop: '1px solid rgba(176, 238, 255, 0.2)',
+                boxShadow: '0 8px 32px rgba(176, 238, 255, 0.2)'
               }}
             >
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
@@ -432,7 +440,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                           navigate(item.path);
                           setIsMenuOpen(false);
                         }}
-                        className="w-full text-center text-[rgb(236,223,204)] hover:text-white transition-smooth flex flex-col items-center px-3 py-4 sm:px-4 sm:py-6 space-y-2 sm:space-y-3 rounded-xl hover:bg-white/5"
+                        className="w-full text-center text-white hover:text-blue-400 transition-smooth flex flex-col items-center px-3 py-4 sm:px-4 sm:py-6 space-y-2 sm:space-y-3 rounded-xl hover:bg-white/5"
                       >
                         <motion.div
                           whileHover={{ scale: 1.2, rotate: 5 }}
@@ -472,7 +480,13 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                 stiffness: 400,
                 duration: 0.3
               }}
-              className="fixed right-0 top-0 h-full z-50 overflow-y-auto w-full max-w-sm glass-strong"
+              className="fixed right-0 top-0 h-full z-50 overflow-y-auto w-full max-w-sm"
+              style={{
+                background: 'rgba(0, 0, 0, 0.95)',
+                backdropFilter: 'blur(25px) saturate(180%)',
+                border: '1px solid rgba(176, 238, 255, 0.2)',
+                boxShadow: '0 16px 48px rgba(176, 238, 255, 0.2)'
+              }}
             >
               <div className="p-4 sm:p-6">
                 <div className="flex justify-between items-center mb-8">
@@ -480,7 +494,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1, duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-                    className="text-xl sm:text-2xl font-light text-[rgb(236,223,204)]"
+                    className="text-xl sm:text-2xl font-light text-white neon-blue"
                   >
                     Profile
                   </motion.h2>
@@ -488,7 +502,7 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                     whileHover={{ scale: 1.1, rotate: 90 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setIsProfileOpen(false)}
-                    className="text-[rgb(236,223,204)] hover:text-[rgb(105,117,101)] transition-smooth p-2 rounded-lg min-h-[40px] min-w-[40px] flex items-center justify-center hover-glow"
+                    className="text-white hover:text-gray-300 transition-smooth p-2 rounded-lg min-h-[40px] min-w-[40px] flex items-center justify-center hover-glow"
                   >
                     <X size={isMobile ? 18 : 22} />
                   </motion.button>
@@ -503,19 +517,20 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                   <div className="flex items-center space-x-3 sm:space-x-4 mb-6">
                     <motion.div 
                       whileHover={{ scale: 1.05 }}
-                      className="glass rounded-full flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 hover-glow"
+                      className="rounded-full flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 hover-glow border border-gray-600"
+                      style={{ background: 'rgba(192, 192, 192, 0.1)' }}
                     >
                       {user?.photoURL ? (
                         <img src={user.photoURL} alt="Profile" className="w-full h-full rounded-full object-cover" />
                       ) : (
-                        <User size={isMobile ? 18 : 22} className="text-[rgb(236,223,204)]" />
+                        <User size={isMobile ? 18 : 22} className="text-white" />
                       )}
                     </motion.div>
                     <div>
-                      <h3 className="font-medium text-[rgb(236,223,204)] text-base sm:text-lg">
+                      <h3 className="font-medium text-white text-base sm:text-lg">
                         {user.displayName || 'User'}
                       </h3>
-                      <p className="text-[rgb(105,117,101)] text-sm sm:text-base">
+                      <p className="text-gray-300 text-sm sm:text-base">
                         {user.email}
                       </p>
                     </div>
@@ -542,7 +557,11 @@ const Navbar: React.FC<NavbarProps> = memo(({ onSearchOpen, onCartOpen, pageTitl
                         navigate(action.path);
                         setIsProfileOpen(false);
                       }}
-                      className="w-full text-left text-[rgb(236,223,204)] glass rounded-xl transition-glass hover-glass px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-base"
+                      className="w-full text-left text-white rounded-xl transition-glass hover-glass px-3 py-2 sm:px-4 sm:py-3 text-sm sm:text-base"
+                      style={{
+                        background: 'rgba(192, 192, 192, 0.05)',
+                        border: '1px solid rgba(176, 238, 255, 0.2)'
+                      }}
                     >
                       {action.label}
                     </motion.button>
