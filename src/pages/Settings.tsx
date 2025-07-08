@@ -121,8 +121,8 @@ const Settings = () => {
                   id="name"
                   value={personalInfo.name}
                   onChange={(e) => setPersonalInfo({...personalInfo, name: e.target.value})}
-                  className="mt-1 bg-[rgb(60,61,55)] border-[rgb(105,117,101)] text-[rgb(236,223,204)]"
                   className="mt-1 bg-[#121212] border-[#C0C0C0]/30 text-[#FFFFFF] focus:border-[#B0EEFF] focus:ring-[#B0EEFF]"
+                />
               </div>
               
               <div>
@@ -356,7 +356,7 @@ const Settings = () => {
                       message: `Scan reminders ${checked ? 'enabled' : 'disabled'}.`
                     });
                   }}
-                  className="mt-1 w-full px-3 py-2 border border-[#C0C0C0]/30 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B0EEFF] bg-[#121212] text-[#FFFFFF]"
+                />
               </div>
             </div>
           </motion.div>
@@ -367,13 +367,13 @@ const Settings = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             className="rounded-lg shadow-sm p-6 border border-[rgb(105,117,101)]"
-                <Label htmlFor="gender" className="text-[#FFFFFF]">Gender</Label>
+            style={{ backgroundColor: 'rgb(24, 28, 20)' }}
           >
             <h2 className="text-xl font-semibold text-[rgb(236,223,204)] mb-4 flex items-center">
               <Shield className="mr-2" size={20} />
               Privacy & Security
             </h2>
-                  className="mt-1 w-full px-3 py-2 border border-[#C0C0C0]/30 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B0EEFF] bg-[#121212] text-[#FFFFFF]"
+            
             <div className="space-y-4">
               <Button 
                 onClick={handleDownloadData}
@@ -387,20 +387,32 @@ const Settings = () => {
               >
                 Download My Data
               </Button>
-                  className="bg-[#FFD700] text-[#121212] hover:bg-[#B0EEFF]"
+              
+              <Button 
+                variant="outline" 
+                className="w-full justify-start border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] bg-transparent"
+                style={{ 
                   borderColor: 'rgb(105, 117, 101)',
                   color: 'rgb(236, 223, 204)',
                   backgroundColor: 'transparent'
                 }}
               >
                 Privacy Policy
-                  className="border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10 bg-transparent"
+              </Button>
+              
+              <Button 
+                variant="outline" 
+                className="w-full justify-start border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] bg-transparent"
+                style={{ 
                   borderColor: 'rgb(105, 117, 101)',
                   color: 'rgb(236, 223, 204)',
                   backgroundColor: 'transparent'
                 }}
               >
                 Terms of Service
+              </Button>
+            </div>
+            
             <div className="mt-8 pt-8 border-t border-[#C0C0C0]/30">
               <Button 
                 onClick={handleDeleteAccount}
