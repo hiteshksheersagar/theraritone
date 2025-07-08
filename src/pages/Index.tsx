@@ -265,13 +265,13 @@ const Index = () => {
 
       {/* CINEMATIC 3D HERO SECTION */}
       <div className="relative min-h-screen overflow-hidden flex items-center justify-center">
-        {/* 3D Butterfly Background - Moved Up */}
-        <div style={{ transform: 'translateY(-8vh)' }}>
+        {/* 3D Butterfly Background - Restored and Positioned */}
+        <div className="absolute inset-0 w-full h-full" style={{ transform: 'translateY(-8vh)', zIndex: 1 }}>
           <ButterflyScene />
         </div>
         
-        {/* Dark gradient overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" style={{ zIndex: 2 }} />
+        {/* Subtle gradient overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" style={{ zIndex: 2 }} />
 
         {/* Hero Content - Centered Logo within Butterfly */}
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-8" style={{ zIndex: 3, transform: 'translateY(-5vh)' }}>

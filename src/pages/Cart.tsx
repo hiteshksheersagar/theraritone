@@ -95,38 +95,40 @@ const Cart = () => {
     }, 2000);
   };
 
-  if (cart.length === 0) {
-    return (
-      <div className="min-h-screen bg-white">
-        <Navbar 
-          onSearchOpen={() => {}}
-          onCartOpen={() => {}}
-          pageTitle="Your cart"
-          showBackButton={true}
-        />
-        <div className="pt-16 flex items-center justify-center min-h-[80vh] px-4">
-          <div className="text-center max-w-md mx-auto">
-            <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center">
-              <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-            </div>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Your cart is empty</h2>
-            <p className="text-gray-600 mb-8 text-sm sm:text-base">Add some items to get started shopping</p>
-            <Button 
-              onClick={() => navigate('/catalog')} 
-              className="bg-black text-white hover:bg-gray-800 rounded-lg px-8 py-3"
-            >
-              Continue shopping
-            </Button>
+  const EmptyCart = () => (
+    <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
+      <Navbar 
+        onSearchOpen={() => {}}
+        onCartOpen={() => {}}
+        pageTitle="Your cart"
+        showBackButton={true}
+      />
+      <div className="pt-16 flex items-center justify-center min-h-[80vh] px-4">
+        <div className="text-center max-w-md mx-auto">
+          <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-[#E0E0E0]/10 border border-[#C0C0C0]/20 flex items-center justify-center">
+            <svg className="w-12 h-12 text-[#C0C0C0]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
           </div>
+          <h2 className="text-2xl font-semibold text-[#FFFFFF] mb-4">Your cart is empty</h2>
+          <p className="text-[#C0C0C0] mb-8 text-sm sm:text-base">Add some items to get started shopping</p>
+          <Button 
+            onClick={() => navigate('/catalog')} 
+            className="bg-[#FFD700] text-[#121212] hover:bg-[#B0EEFF] rounded-lg px-8 py-3"
+          >
+            Continue shopping
+          </Button>
         </div>
       </div>
-    );
+    </div>
+  );
+
+  if (cart.length === 0) {
+    return <EmptyCart />;
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
       <Navbar 
         onSearchOpen={() => {}}
         onCartOpen={() => {}}
@@ -136,10 +138,10 @@ const Cart = () => {
       
       <div className="pt-16 max-w-6xl mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-semibold text-gray-900">Your cart</h1>
+          <h1 className="text-2xl font-semibold text-[#FFFFFF]">Your cart</h1>
           <button
             onClick={() => navigate('/catalog')}
-            className="text-gray-600 hover:text-gray-800 underline"
+            className="text-[#C0C0C0] hover:text-[#B0EEFF] underline"
           >
             Continue shopping
           </button>
@@ -149,7 +151,7 @@ const Cart = () => {
           {/* Cart Items */}
           <div className="lg:col-span-2">
             {/* Header */}
-            <div className="hidden md:grid grid-cols-12 gap-4 pb-4 border-b text-sm font-medium text-gray-600 uppercase tracking-wide">
+            <div className="hidden md:grid grid-cols-12 gap-4 pb-4 border-b border-[#C0C0C0]/30 text-sm font-medium text-[#C0C0C0] uppercase tracking-wide">
               <div className="col-span-6">PRODUCT</div>
               <div className="col-span-3 text-center">QUANTITY</div>
               <div className="col-span-3 text-right">TOTAL</div>
@@ -162,11 +164,11 @@ const Cart = () => {
                   key={`${item.id}-${item.size}`}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="grid grid-cols-1 md:grid-cols-12 gap-4 py-4 border-b border-gray-200"
+                  className="grid grid-cols-1 md:grid-cols-12 gap-4 py-4 border-b border-[#C0C0C0]/20"
                 >
                   {/* Product Info */}
                   <div className="md:col-span-6 flex items-center space-x-4">
-                    <div className="w-20 h-20 flex-shrink-0 overflow-hidden rounded-lg border">
+                    <div className="w-20 h-20 flex-shrink-0 overflow-hidden rounded-lg border border-[#C0C0C0]/20">
                       <img
                         src={item.imageURL}
                         alt={item.name}
@@ -174,9 +176,9 @@ const Cart = () => {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-gray-900 truncate">{item.name}</h3>
-                      {item.size && <p className="text-sm text-gray-600">Size: {item.size}</p>}
-                      <p className="text-sm text-gray-900 font-medium">₹{item.price}</p>
+                      <h3 className="font-medium text-[#FFFFFF] truncate">{item.name}</h3>
+                      {item.size && <p className="text-sm text-[#C0C0C0]">Size: {item.size}</p>}
+                      <p className="text-sm text-[#FFFFFF] font-medium">₹{item.price}</p>
                     </div>
                   </div>
                   
@@ -184,20 +186,20 @@ const Cart = () => {
                   <div className="md:col-span-3 flex items-center justify-center space-x-2">
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1, item.size)}
-                      className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-full transition-colors border border-gray-300"
+                      className="w-8 h-8 flex items-center justify-center hover:bg-[#E0E0E0]/10 rounded-full transition-colors border border-[#C0C0C0]/30"
                     >
-                      <Minus size={14} className="text-gray-600" />
+                      <Minus size={14} className="text-[#C0C0C0]" />
                     </button>
-                    <span className="w-12 text-center text-gray-900 font-medium">{item.quantity}</span>
+                    <span className="w-12 text-center text-[#FFFFFF] font-medium">{item.quantity}</span>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1, item.size)}
-                      className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-full transition-colors border border-gray-300"
+                      className="w-8 h-8 flex items-center justify-center hover:bg-[#E0E0E0]/10 rounded-full transition-colors border border-[#C0C0C0]/30"
                     >
-                      <Plus size={14} className="text-gray-600" />
+                      <Plus size={14} className="text-[#C0C0C0]" />
                     </button>
                     <button
                       onClick={() => removeItem(item.id, item.size)}
-                      className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-red-500 transition-colors ml-2"
+                      className="w-8 h-8 flex items-center justify-center text-[#C0C0C0] hover:text-[#FF7E79] transition-colors ml-2"
                     >
                       <Trash2 size={16} />
                     </button>
@@ -205,7 +207,7 @@ const Cart = () => {
                   
                   {/* Total */}
                   <div className="md:col-span-3 flex items-center justify-end">
-                    <p className="font-medium text-gray-900">
+                    <p className="font-medium text-[#FFFFFF]">
                       ₹{item.quantity * item.price}
                     </p>
                   </div>
@@ -216,31 +218,31 @@ const Cart = () => {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-gray-50 rounded-lg p-6 sticky top-24">
-              <h2 className="text-lg font-semibold text-gray-900 mb-6">Estimated total</h2>
+            <div className="rounded-lg p-6 sticky top-24 futuristic-card">
+              <h2 className="text-lg font-semibold text-[#FFFFFF] mb-6">Estimated total</h2>
               
               <div className="space-y-4">
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Subtotal</span>
-                  <span className="font-medium text-gray-900">₹{subtotal}</span>
+                  <span className="text-[#C0C0C0]">Subtotal</span>
+                  <span className="font-medium text-[#FFFFFF]">₹{subtotal}</span>
                 </div>
                 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Shipping</span>
-                  <span className="font-medium text-gray-900">
+                  <span className="text-[#C0C0C0]">Shipping</span>
+                  <span className="font-medium text-[#FFFFFF]">
                     {shipping === 0 ? 'Free' : `₹${shipping}`}
                   </span>
                 </div>
                 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Tax (18%)</span>
-                  <span className="font-medium text-gray-900">₹{tax}</span>
+                  <span className="text-[#C0C0C0]">Tax (18%)</span>
+                  <span className="font-medium text-[#FFFFFF]">₹{tax}</span>
                 </div>
                 
-                <div className="border-t border-gray-200 pt-4">
+                <div className="border-t border-[#C0C0C0]/30 pt-4">
                   <div className="flex justify-between">
-                    <span className="text-lg font-semibold text-gray-900">Total</span>
-                    <span className="text-lg font-semibold text-gray-900">₹{total}</span>
+                    <span className="text-lg font-semibold text-[#FFFFFF]">Total</span>
+                    <span className="text-lg font-semibold text-[#FFFFFF]">₹{total}</span>
                   </div>
                 </div>
               </div>
@@ -249,11 +251,11 @@ const Cart = () => {
                 <Button 
                   onClick={handleCheckout}
                   disabled={loading}
-                  className="w-full bg-black text-white hover:bg-gray-800 py-3"
+                  className="w-full bg-[#FFD700] text-[#121212] hover:bg-[#B0EEFF] py-3"
                 >
                   {loading ? (
                     <div className="flex items-center space-x-2">
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-[#121212]"></div>
                       <span>Processing...</span>
                     </div>
                   ) : (
@@ -262,7 +264,7 @@ const Cart = () => {
                 </Button>
                 
                 {shipping > 0 && (
-                  <p className="text-sm text-gray-600 text-center">
+                  <p className="text-sm text-[#C0C0C0] text-center">
                     Taxes, discounts and shipping calculated at checkout
                   </p>
                 )}

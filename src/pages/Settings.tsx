@@ -93,7 +93,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: 'rgb(60, 61, 55)' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
       <Navbar 
         onSearchOpen={() => {}}
         onCartOpen={() => {}}
@@ -107,37 +107,36 @@ const Settings = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-lg shadow-sm p-6 border border-[rgb(105,117,101)]"
-            style={{ backgroundColor: 'rgb(24, 28, 20)' }}
+            className="rounded-lg shadow-sm p-6 border border-[#C0C0C0]/20 futuristic-card"
           >
-            <h2 className="text-xl font-semibold text-[rgb(236,223,204)] mb-4 flex items-center">
+            <h2 className="text-xl font-semibold text-[#FFFFFF] mb-4 flex items-center">
               <User className="mr-2" size={20} />
               Personal Information
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
-                <Label htmlFor="name" className="text-[rgb(236,223,204)]">Full Name</Label>
+                <Label htmlFor="name" className="text-[#FFFFFF]">Full Name</Label>
                 <Input
                   id="name"
                   value={personalInfo.name}
                   onChange={(e) => setPersonalInfo({...personalInfo, name: e.target.value})}
                   className="mt-1 bg-[rgb(60,61,55)] border-[rgb(105,117,101)] text-[rgb(236,223,204)]"
-                />
+                  className="mt-1 bg-[#121212] border-[#C0C0C0]/30 text-[#FFFFFF] focus:border-[#B0EEFF] focus:ring-[#B0EEFF]"
               </div>
               
               <div>
-                <Label htmlFor="email" className="text-[rgb(236,223,204)]">Email</Label>
+                <Label htmlFor="email" className="text-[#FFFFFF]">Email</Label>
                 <Input
                   id="email"
                   value={personalInfo.email}
                   disabled
-                  className="mt-1 bg-[rgb(60,61,55)] border-[rgb(105,117,101)] text-[rgb(236,223,204)]"
+                  className="mt-1 bg-[#121212] border-[#C0C0C0]/30 text-[#FFFFFF]"
                 />
               </div>
               
               <div>
-                <Label htmlFor="phone" className="text-[rgb(236,223,204)]">Phone Number</Label>
+                <Label htmlFor="stylePreference" className="text-[#FFFFFF]">Style Preference</Label>
                 <Input
                   id="phone"
                   value={personalInfo.phone}
@@ -357,7 +356,7 @@ const Settings = () => {
                       message: `Scan reminders ${checked ? 'enabled' : 'disabled'}.`
                     });
                   }}
-                />
+                  className="mt-1 w-full px-3 py-2 border border-[#C0C0C0]/30 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B0EEFF] bg-[#121212] text-[#FFFFFF]"
               </div>
             </div>
           </motion.div>
@@ -368,13 +367,13 @@ const Settings = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             className="rounded-lg shadow-sm p-6 border border-[rgb(105,117,101)]"
-            style={{ backgroundColor: 'rgb(24, 28, 20)' }}
+                <Label htmlFor="gender" className="text-[#FFFFFF]">Gender</Label>
           >
             <h2 className="text-xl font-semibold text-[rgb(236,223,204)] mb-4 flex items-center">
               <Shield className="mr-2" size={20} />
               Privacy & Security
             </h2>
-            
+                  className="mt-1 w-full px-3 py-2 border border-[#C0C0C0]/30 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B0EEFF] bg-[#121212] text-[#FFFFFF]"
             <div className="space-y-4">
               <Button 
                 onClick={handleDownloadData}
@@ -388,38 +387,25 @@ const Settings = () => {
               >
                 Download My Data
               </Button>
-              <Button 
-                onClick={() => navigate('/quick-links')}
-                variant="outline" 
-                className="w-full justify-start border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] bg-transparent"
-                style={{ 
+                  className="bg-[#FFD700] text-[#121212] hover:bg-[#B0EEFF]"
                   borderColor: 'rgb(105, 117, 101)',
                   color: 'rgb(236, 223, 204)',
                   backgroundColor: 'transparent'
                 }}
               >
                 Privacy Policy
-              </Button>
-              <Button 
-                onClick={() => navigate('/quick-links')}
-                variant="outline" 
-                className="w-full justify-start border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] bg-transparent"
-                style={{ 
+                  className="border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10 bg-transparent"
                   borderColor: 'rgb(105, 117, 101)',
                   color: 'rgb(236, 223, 204)',
                   backgroundColor: 'transparent'
                 }}
               >
                 Terms of Service
-              </Button>
+            <div className="mt-8 pt-8 border-t border-[#C0C0C0]/30">
               <Button 
                 onClick={handleDeleteAccount}
                 variant="destructive" 
-                className="w-full justify-start bg-red-600 text-white hover:bg-red-700 border-0"
-                style={{ 
-                  backgroundColor: 'rgb(220, 38, 38)', 
-                  color: 'white'
-                }}
+                className="flex items-center space-x-2 bg-[#FF7E79] text-[#FFFFFF] hover:bg-[#FF7E79]/80"
               >
                 Delete Account
               </Button>

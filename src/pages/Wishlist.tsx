@@ -154,7 +154,7 @@ const Wishlist = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: 'rgb(60, 61, 55)' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
       <Navbar 
         onSearchOpen={() => {}}
         onCartOpen={() => {}}
@@ -171,9 +171,9 @@ const Wishlist = () => {
             className="flex items-center justify-center mb-4"
           >
             <Heart size={32} className="text-red-500 mr-3 fill-current" />
-            <h1 className="text-3xl font-light text-[rgb(236,223,204)]">My Wishlist</h1>
+            <h1 className="text-3xl font-light text-[#FFFFFF]">My Wishlist</h1>
           </motion.div>
-          <p className="text-[rgb(105,117,101)] max-w-2xl mx-auto">
+          <p className="text-[#C0C0C0] max-w-2xl mx-auto">
             {wishlistItems.length > 0 
               ? `You have ${wishlistItems.length} item${wishlistItems.length > 1 ? 's' : ''} in your wishlist`
               : 'Your wishlist is currently empty'
@@ -190,8 +190,7 @@ const Wishlist = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="rounded-lg overflow-hidden shadow-sm border border-[rgb(105,117,101)] group"
-                style={{ backgroundColor: 'rgb(24, 28, 20)' }}
+                className="rounded-lg overflow-hidden shadow-sm border border-[#C0C0C0]/20 group futuristic-card"
               >
                 <div className="aspect-[3/4] overflow-hidden relative">
                   <img
@@ -221,18 +220,18 @@ const Wishlist = () => {
                 </div>
                 
                 <div className="p-4">
-                  <h3 className="font-medium text-[rgb(236,223,204)] mb-1 text-sm sm:text-base">{item.name}</h3>
-                  <p className="text-xs sm:text-sm text-[rgb(105,117,101)] mb-2">{item.category}</p>
-                  <p className="text-base sm:text-lg font-semibold text-[rgb(236,223,204)] mb-3">₹{item.price}</p>
+                  <h3 className="font-medium text-[#FFFFFF] mb-1 text-sm sm:text-base">{item.name}</h3>
+                  <p className="text-xs sm:text-sm text-[#C0C0C0] mb-2">{item.category}</p>
+                  <p className="text-base sm:text-lg font-semibold text-[#FFFFFF] mb-3">₹{item.price}</p>
                   
                   {/* Stock Status */}
                   <div className="mb-3">
                     {item.stock > 0 ? (
-                      <span className="text-xs text-green-400 bg-green-900/20 px-2 py-1 rounded">
+                      <span className="text-xs text-[#B0EEFF] bg-[#B0EEFF]/20 px-2 py-1 rounded">
                         In Stock ({item.stock} left)
                       </span>
                     ) : (
-                      <span className="text-xs text-red-400 bg-red-900/20 px-2 py-1 rounded">
+                      <span className="text-xs text-[#FF7E79] bg-[#FF7E79]/20 px-2 py-1 rounded">
                         Out of Stock
                       </span>
                     )}
@@ -244,7 +243,7 @@ const Wishlist = () => {
                       {item.tags.slice(0, 2).map((tag) => (
                         <span
                           key={tag}
-                          className="px-2 py-1 text-xs bg-[rgb(60,61,55)] text-[rgb(105,117,101)] rounded"
+                          className="px-2 py-1 text-xs bg-[#E0E0E0]/10 text-[#C0C0C0] rounded border border-[#C0C0C0]/20"
                         >
                           {tag}
                         </span>
@@ -256,7 +255,7 @@ const Wishlist = () => {
                     <Button
                       onClick={() => addToCartFromWishlist(item)}
                       disabled={item.stock === 0}
-                      className="w-full bg-[rgb(236,223,204)] text-[rgb(24,28,20)] hover:bg-[rgb(220,210,190)] flex items-center justify-center space-x-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-[#FFD700] text-[#121212] hover:bg-[#B0EEFF] flex items-center justify-center space-x-2 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <ShoppingBag size={16} />
                       <span>{item.stock === 0 ? 'Out of Stock' : 'Add to Cart'}</span>
@@ -265,7 +264,7 @@ const Wishlist = () => {
                     <Button
                       onClick={() => removeFromWishlist(item.id)}
                       variant="outline"
-                      className="w-full border-red-500 text-red-400 hover:bg-red-900/20 hover:border-red-400 flex items-center justify-center space-x-2 rounded-xl"
+                      className="w-full border-[#FF7E79] text-[#FF7E79] hover:bg-[#FF7E79]/20 hover:border-[#FF7E79] flex items-center justify-center space-x-2 rounded-xl"
                     >
                       <Trash2 size={16} />
                       <span>Remove</span>
@@ -281,16 +280,16 @@ const Wishlist = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center py-16"
           >
-            <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-[rgb(24,28,20)] border border-[rgb(105,117,101)] flex items-center justify-center">
-              <Heart size={32} className="text-[rgb(105,117,101)]" />
+            <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-[#E0E0E0]/10 border border-[#C0C0C0]/20 flex items-center justify-center">
+              <Heart size={32} className="text-[#C0C0C0]" />
             </div>
-            <h3 className="text-xl font-medium text-[rgb(236,223,204)] mb-2">Your wishlist is empty</h3>
-            <p className="text-[rgb(105,117,101)] mb-8 max-w-md mx-auto">
+            <h3 className="text-xl font-medium text-[#FFFFFF] mb-2">Your wishlist is empty</h3>
+            <p className="text-[#C0C0C0] mb-8 max-w-md mx-auto">
               Start browsing our collection and save items you love by clicking the heart icon on any product.
             </p>
             <Button 
               onClick={() => navigate('/catalog')} 
-              className="bg-[rgb(236,223,204)] text-[rgb(24,28,20)] hover:bg-[rgb(220,210,190)] rounded-xl px-8 py-3"
+              className="bg-[#FFD700] text-[#121212] hover:bg-[#B0EEFF] rounded-xl px-8 py-3"
             >
               Browse Collection
             </Button>
@@ -313,7 +312,7 @@ const Wishlist = () => {
                   inStockItems.forEach(item => addToCartFromWishlist(item));
                 }}
                 disabled={wishlistItems.every(item => item.stock === 0)}
-                className="bg-[rgb(236,223,204)] text-[rgb(24,28,20)] hover:bg-[rgb(220,210,190)] rounded-xl px-6 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-[#FFD700] text-[#121212] hover:bg-[#B0EEFF] rounded-xl px-6 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Add All to Cart
               </Button>
@@ -331,7 +330,7 @@ const Wishlist = () => {
                   });
                 }}
                 variant="outline"
-                className="border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] rounded-xl px-6 py-3"
+                className="border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10 rounded-xl px-6 py-3"
               >
                 Clear Wishlist
               </Button>

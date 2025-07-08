@@ -20,13 +20,13 @@ const ButterflyScene: React.FC = () => {
   return (
     <div 
       ref={containerRef}
-      className="absolute inset-0 w-full h-full overflow-hidden"
+      className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
       style={{ zIndex: 1 }}
     >
       {/* Main Butterfly - Positioned Higher for Better Visibility */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center"
-        style={{ transform: 'translateY(-10vh)' }} // Moved up for better visibility
+        style={{ transform: 'translateY(-8vh)' }} // Moved up for better visibility
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 3, ease: "easeOut" }}
@@ -34,9 +34,9 @@ const ButterflyScene: React.FC = () => {
         <motion.div
           className="relative"
           style={{
-            width: '140vw',
-            height: '90vh',
-            opacity: 0.4,
+            width: '120vw',
+            height: '80vh',
+            opacity: 0.6,
             filter: 'drop-shadow(0 0 40px rgba(176, 238, 255, 0.3))',
             mixBlendMode: 'lighten'
           }}

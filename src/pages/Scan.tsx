@@ -146,7 +146,7 @@ const Scan = () => {
   }, []);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: 'rgb(60, 61, 55)' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
       <Navbar 
         onSearchOpen={() => {}}
         onCartOpen={() => {}}
@@ -156,47 +156,47 @@ const Scan = () => {
       
       <div className="pt-20 max-w-6xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-light text-[rgb(236,223,204)] mb-2">AI Body Scan</h1>
-          <p className="text-xl text-[rgb(105,117,101)]">Capture your body measurements with AI precision</p>
-          <p className="text-[rgb(105,117,101)] mt-2">
+          <h1 className="text-4xl font-light text-[#FFFFFF] mb-2">AI Body Scan</h1>
+          <p className="text-xl text-[#C0C0C0]">Capture your body measurements with AI precision</p>
+          <p className="text-[#C0C0C0] mt-2">
             Position yourself 6 feet away from your camera in good lighting. The scan takes about 30 seconds to complete.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Your Progress */}
-          <div className="rounded-lg shadow-sm p-6 border border-[rgb(105,117,101)]" style={{ backgroundColor: 'rgb(24, 28, 20)' }}>
-            <h2 className="text-xl font-semibold text-[rgb(236,223,204)] mb-6 flex items-center">
+          <div className="rounded-lg shadow-sm p-6 border border-[#C0C0C0]/20 futuristic-card">
+            <h2 className="text-xl font-semibold text-[#FFFFFF] mb-6 flex items-center">
               <User className="mr-2" size={20} />
               Your Progress
             </h2>
             <div className="space-y-6">
-              <div className="text-center p-4 rounded-lg border border-[rgb(105,117,101)]" style={{ backgroundColor: 'rgb(60, 61, 55)' }}>
-                <div className="text-2xl font-bold text-[rgb(236,223,204)]">{scans.length}</div>
-                <div className="text-sm text-[rgb(105,117,101)]">Total Scans</div>
+              <div className="text-center p-4 rounded-lg border border-[#C0C0C0]/20" style={{ backgroundColor: 'rgba(224, 224, 224, 0.05)' }}>
+                <div className="text-2xl font-bold text-[#FFFFFF]">{scans.length}</div>
+                <div className="text-sm text-[#C0C0C0]">Total Scans</div>
               </div>
               
-              <div className="text-center p-4 rounded-lg border border-[rgb(105,117,101)]" style={{ backgroundColor: 'rgb(60, 61, 55)' }}>
-                <div className="text-2xl font-bold text-[rgb(236,223,204)]">
+              <div className="text-center p-4 rounded-lg border border-[#C0C0C0]/20" style={{ backgroundColor: 'rgba(224, 224, 224, 0.05)' }}>
+                <div className="text-2xl font-bold text-[#FFFFFF]">
                   {scans.length > 0 
                     ? new Date(scans[0].scanTime).toLocaleDateString()
                     : 'Never'
                   }
                 </div>
-                <div className="text-sm text-[rgb(105,117,101)]">Latest Scan</div>
+                <div className="text-sm text-[#C0C0C0]">Latest Scan</div>
               </div>
               
-              <div className="text-center p-4 rounded-lg border border-[rgb(105,117,101)]" style={{ backgroundColor: 'rgb(60, 61, 55)' }}>
-                <div className="text-2xl font-bold text-[rgb(236,223,204)]">
+              <div className="text-center p-4 rounded-lg border border-[#C0C0C0]/20" style={{ backgroundColor: 'rgba(224, 224, 224, 0.05)' }}>
+                <div className="text-2xl font-bold text-[#FFFFFF]">
                   {scans.reduce((total, scan) => total + scan.tryOnCount, 0)}
                 </div>
-                <div className="text-sm text-[rgb(105,117,101)]">Virtual Try-Ons</div>
+                <div className="text-sm text-[#C0C0C0]">Virtual Try-Ons</div>
               </div>
               
               <Button 
                 onClick={() => navigate('/scan-history')}
                 variant="outline" 
-                className="w-full border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)]"
+                className="w-full border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10"
               >
                 View Scan History
               </Button>
@@ -204,7 +204,7 @@ const Scan = () => {
           </div>
 
           {/* Camera Section */}
-          <div className="lg:col-span-2 rounded-lg shadow-sm p-6 border border-[rgb(105,117,101)]" style={{ backgroundColor: 'rgb(24, 28, 20)' }}>
+          <div className="lg:col-span-2 rounded-lg shadow-sm p-6 border border-[#C0C0C0]/20 futuristic-card">
             <div className="aspect-video bg-gray-900 rounded-lg mb-6 relative overflow-hidden">
               {stream ? (
                 <>
@@ -234,30 +234,30 @@ const Scan = () => {
             </div>
 
             {/* Tips Section */}
-            <div className="border rounded-lg p-6 mb-6" style={{ backgroundColor: 'rgb(60, 61, 55)', borderColor: 'rgb(105,117,101)' }}>
-              <h3 className="font-medium text-[rgb(236,223,204)] mb-4 flex items-center">
+            <div className="border rounded-lg p-6 mb-6" style={{ backgroundColor: 'rgba(224, 224, 224, 0.05)', borderColor: '#C0C0C0' }}>
+              <h3 className="font-medium text-[#FFFFFF] mb-4 flex items-center">
                 <Lightbulb className="mr-2" size={20} />
                 Scan Tips for Best Results:
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-[rgb(105,117,101)]">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-[#C0C0C0]">
                 <div className="flex items-start space-x-2">
                   <Lightbulb size={16} className="mt-0.5 flex-shrink-0" />
                   <div>
-                    <div className="font-medium text-[rgb(236,223,204)]">Good Lighting</div>
+                    <div className="font-medium text-[#FFFFFF]">Good Lighting</div>
                     <div>Ensure bright, even lighting without shadows</div>
                   </div>
                 </div>
                 <div className="flex items-start space-x-2">
                   <User size={16} className="mt-0.5 flex-shrink-0" />
                   <div>
-                    <div className="font-medium text-[rgb(236,223,204)]">Fitted Clothing</div>
+                    <div className="font-medium text-[#FFFFFF]">Fitted Clothing</div>
                     <div>Wear form-fitting clothes for accurate measurements</div>
                   </div>
                 </div>
                 <div className="flex items-start space-x-2">
                   <Clock size={16} className="mt-0.5 flex-shrink-0" />
                   <div>
-                    <div className="font-medium text-[rgb(236,223,204)]">Stay Still</div>
+                    <div className="font-medium text-[#FFFFFF]">Stay Still</div>
                     <div>Keep steady during the 30-second scan</div>
                   </div>
                 </div>
@@ -268,7 +268,7 @@ const Scan = () => {
               {!isScanning ? (
                 <Button
                   onClick={startScan}
-                  className="flex-1 bg-[rgb(236,223,204)] text-[rgb(24,28,20)] hover:bg-[rgb(220,210,190)] flex items-center justify-center space-x-2 py-3"
+                  className="flex-1 bg-[#FFD700] text-[#121212] hover:bg-[#B0EEFF] flex items-center justify-center space-x-2 py-3"
                 >
                   <Play size={20} />
                   <span>Start Body Scan</span>
@@ -277,7 +277,7 @@ const Scan = () => {
                 <Button
                   onClick={cancelScan}
                   variant="destructive"
-                  className="flex-1 flex items-center justify-center space-x-2 py-3"
+                  className="flex-1 flex items-center justify-center space-x-2 py-3 bg-[#FF7E79] text-[#FFFFFF] hover:bg-[#FF7E79]/80"
                 >
                   <Square size={20} />
                   <span>Cancel Scan</span>
