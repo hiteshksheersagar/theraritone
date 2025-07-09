@@ -8,6 +8,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { addToCart } from '@/lib/user';
 import { useToast } from '@/components/ToastContainer';
 import ProductModal from '@/components/ProductModal';
+import SearchOverlay from '@/components/SearchOverlay';
 import Navbar from '@/components/Navbar';
 import { useLocation } from 'react-router-dom';
 
@@ -20,6 +21,7 @@ const Catalog = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
   const [wishlist, setWishlist] = useState<string[]>([]);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [filters, setFilters] = useState({
     category: '',
     size: '',
