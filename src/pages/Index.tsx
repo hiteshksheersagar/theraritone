@@ -181,6 +181,15 @@ const Index = () => {
     navigate(`/catalog?category=${encodeURIComponent(category)}`);
   };
 
+  // Handle New Arrivals product click - open modal instead of navigating
+  const handleNewArrivalClick = (productId: string) => {
+    const product = catalogProducts.find(p => p.id === productId);
+    if (product) {
+      setSelectedProduct(product);
+      setIsModalOpen(true);
+    }
+  };
+
   // Handle Best Picks product click
   const handleBestPickClick = (product: any) => {
     setSelectedProduct(product);
@@ -264,7 +273,10 @@ const Index = () => {
       />
 
       {/* CINEMATIC 3D HERO SECTION */}
-      <div className="relative min-h-screen overflow-hidden flex items-center justify-center">
+      <div className="relative min-h-screen overflow-hidden flex items-center justify-center"
+           style={{
+             background: 'linear-gradient(135deg, #121212 0%, #1a1a1a 50%, #0f0f23 100%)',
+           }}>
         {/* 3D Butterfly Background - Restored and Positioned */}
         <div className="absolute inset-0 w-full h-full" style={{ transform: 'translateY(-8vh)', zIndex: 1 }}>
           <ButterflyScene />
@@ -346,7 +358,10 @@ const Index = () => {
       </div>
 
       {/* NEW ARRIVALS SECTION */}
-      <section className="py-12 sm:py-20" style={{ background: '#121212' }}>
+      <section className="py-12 sm:py-20" 
+               style={{ 
+                 background: 'linear-gradient(180deg, #1a1a1a 0%, #0f0f23 50%, #1a1a1a 100%)',
+               }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
             <h2 className="text-hero font-light mb-4 text-white flex items-center justify-center neon-flicker">
@@ -363,7 +378,7 @@ const Index = () => {
               <div
                 key={item.id}
                 className="group cursor-pointer"
-                onClick={() => navigate('/catalog')}
+                onClick={() => handleNewArrivalClick(item.id)}
               >
                 <div className="futuristic-card rounded-2xl overflow-hidden transition-glass hover-glass">
                   <div className="aspect-[3/4] relative overflow-hidden">
@@ -413,7 +428,10 @@ const Index = () => {
       </section>
 
       {/* CATEGORIES SECTION */}
-      <section className="py-12 sm:py-20" style={{ background: '#121212' }}>
+      <section className="py-12 sm:py-20" 
+               style={{ 
+                 background: 'linear-gradient(180deg, #1a1a1a 0%, #121212 50%, #0f0f23 100%)',
+               }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
             <h2 className="text-hero font-light mb-4 text-white flex items-center justify-center neon-flicker">
@@ -457,7 +475,10 @@ const Index = () => {
       </section>
 
       {/* BEST PICKS SECTION */}
-      <section className="py-12 sm:py-20" style={{ background: '#121212' }}>
+      <section className="py-12 sm:py-20" 
+               style={{ 
+                 background: 'linear-gradient(180deg, #0f0f23 0%, #1a1a1a 50%, #121212 100%)',
+               }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-16">
             <h2 className="text-hero font-light mb-4 text-white flex items-center justify-center neon-flicker">
@@ -527,7 +548,10 @@ const Index = () => {
       </section>
 
       {/* FOOTER SECTION */}
-      <footer className="py-8 sm:py-16 border-t border-gray-800" style={{ background: '#121212' }}>
+      <footer className="py-8 sm:py-16 border-t border-gray-800" 
+              style={{ 
+                background: 'linear-gradient(180deg, #121212 0%, #0f0f23 100%)',
+              }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="futuristic-card rounded-2xl p-6 sm:p-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
