@@ -128,7 +128,7 @@ const Cart = () => {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#1a1a1a' }}>
       <Navbar 
         onSearchOpen={() => {}}
         onCartOpen={() => {}}
@@ -218,7 +218,12 @@ const Cart = () => {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="rounded-lg p-6 sticky top-24 futuristic-card">
+            <div className="rounded-lg p-6 sticky top-24 border border-[#C0C0C0]/20"
+                 style={{ 
+                   backgroundColor: 'rgba(224, 224, 224, 0.05)',
+                   backdropFilter: 'blur(20px)',
+                   boxShadow: '0 8px 32px rgba(176, 238, 255, 0.1)'
+                 }}>
               <h2 className="text-lg font-semibold text-[#FFFFFF] mb-6">Estimated total</h2>
               
               <div className="space-y-4">

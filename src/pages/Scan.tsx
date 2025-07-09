@@ -146,7 +146,7 @@ const Scan = () => {
   }, []);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#1a1a1a' }}>
       <Navbar 
         onSearchOpen={() => {}}
         onCartOpen={() => {}}
@@ -165,7 +165,12 @@ const Scan = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Your Progress */}
-          <div className="rounded-lg shadow-sm p-6 border border-[#C0C0C0]/20 futuristic-card">
+          <div className="rounded-lg shadow-sm p-6 border border-[#C0C0C0]/20"
+               style={{ 
+                 backgroundColor: 'rgba(224, 224, 224, 0.05)',
+                 backdropFilter: 'blur(20px)',
+                 boxShadow: '0 8px 32px rgba(176, 238, 255, 0.1)'
+               }}>
             <h2 className="text-xl font-semibold text-[#FFFFFF] mb-6 flex items-center">
               <User className="mr-2" size={20} />
               Your Progress
@@ -204,7 +209,12 @@ const Scan = () => {
           </div>
 
           {/* Camera Section */}
-          <div className="lg:col-span-2 rounded-lg shadow-sm p-6 border border-[#C0C0C0]/20 futuristic-card">
+          <div className="lg:col-span-2 rounded-lg shadow-sm p-6 border border-[#C0C0C0]/20"
+               style={{ 
+                 backgroundColor: 'rgba(224, 224, 224, 0.05)',
+                 backdropFilter: 'blur(20px)',
+                 boxShadow: '0 8px 32px rgba(176, 238, 255, 0.1)'
+               }}>
             <div className="aspect-video bg-gray-900 rounded-lg mb-6 relative overflow-hidden">
               {stream ? (
                 <>

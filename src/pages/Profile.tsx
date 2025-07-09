@@ -51,7 +51,7 @@ const Profile = () => {
   const cartTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#1a1a1a' }}>
       <Navbar 
         onSearchOpen={() => {}}
         onCartOpen={() => {}}
@@ -66,7 +66,12 @@ const Profile = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="rounded-lg shadow-sm p-8 border border-[#C0C0C0]/20 futuristic-card"
+              className="rounded-lg shadow-sm p-8 border border-[#C0C0C0]/20"
+              style={{ 
+                backgroundColor: 'rgba(224, 224, 224, 0.05)',
+                backdropFilter: 'blur(20px)',
+                boxShadow: '0 8px 32px rgba(176, 238, 255, 0.1)'
+              }}
             >
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center space-x-4">
@@ -100,28 +105,28 @@ const Profile = () => {
                     value={profile.name}
                     onChange={(e) => setProfile({...profile, name: e.target.value})}
                     disabled={!isEditing}
-                    className="mt-1 bg-[rgb(60,61,55)] border-[rgb(105,117,101)] text-[rgb(236,223,204)]"
+                    className="mt-1 bg-[#121212] border-[#C0C0C0]/30 text-[#FFFFFF] focus:border-[#B0EEFF] focus:ring-[#B0EEFF]"
                   />
                 </div>
                 
                 <div>
-                  <Label htmlFor="email" className="text-[rgb(236,223,204)]">Email</Label>
+                  <Label htmlFor="email" className="text-[#FFFFFF]">Email</Label>
                   <Input
                     id="email"
                     value={profile.email}
                     disabled
-                    className="mt-1 bg-[rgb(60,61,55)] border-[rgb(105,117,101)] text-[rgb(236,223,204)]"
+                    className="mt-1 bg-[#121212] border-[#C0C0C0]/30 text-[#FFFFFF]"
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="stylePreference" className="text-[rgb(236,223,204)]">Style Preference</Label>
+                  <Label htmlFor="stylePreference" className="text-[#FFFFFF]">Style Preference</Label>
                   <select
                     id="stylePreference"
                     value={profile.stylePreference}
                     onChange={(e) => setProfile({...profile, stylePreference: e.target.value})}
                     disabled={!isEditing}
-                    className="mt-1 w-full px-3 py-2 border border-[rgb(105,117,101)] rounded-md focus:outline-none focus:ring-2 focus:ring-[rgb(105,117,101)] bg-[rgb(60,61,55)] text-[rgb(236,223,204)]"
+                    className="mt-1 w-full px-3 py-2 border border-[#C0C0C0]/30 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B0EEFF] bg-[#121212] text-[#FFFFFF]"
                   >
                     <option value="">Select Style</option>
                     <option value="Minimalist">Minimalist</option>
@@ -132,13 +137,13 @@ const Profile = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="gender" className="text-[rgb(236,223,204)]">Gender</Label>
+                  <Label htmlFor="gender" className="text-[#FFFFFF]">Gender</Label>
                   <select
                     id="gender"
                     value={profile.gender}
                     onChange={(e) => setProfile({...profile, gender: e.target.value})}
                     disabled={!isEditing}
-                    className="mt-1 w-full px-3 py-2 border border-[rgb(105,117,101)] rounded-md focus:outline-none focus:ring-2 focus:ring-[rgb(105,117,101)] bg-[rgb(60,61,55)] text-[rgb(236,223,204)]"
+                    className="mt-1 w-full px-3 py-2 border border-[#C0C0C0]/30 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B0EEFF] bg-[#121212] text-[#FFFFFF]"
                   >
                     <option value="">Select Gender</option>
                     <option value="Male">Male</option>
@@ -152,38 +157,25 @@ const Profile = () => {
                 <div className="mt-6 flex space-x-4">
                   <Button 
                     onClick={handleSave} 
-                    className="bg-[rgb(236,223,204)] text-[rgb(24,28,20)] hover:bg-[rgb(220,210,190)]"
-                    style={{ 
-                      backgroundColor: 'rgb(236, 223, 204)', 
-                      color: 'rgb(24, 28, 20)'
-                    }}
+                    className="bg-[#FFD700] text-[#121212] hover:bg-[#B0EEFF]"
                   >
                     Save Changes
                   </Button>
                   <Button 
                     onClick={() => setIsEditing(false)} 
                     variant="outline" 
-                    className="border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] bg-transparent"
-                    style={{ 
-                      borderColor: 'rgb(105, 117, 101)',
-                      color: 'rgb(236, 223, 204)',
-                      backgroundColor: 'transparent'
-                    }}
+                    className="border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10 bg-transparent"
                   >
                     Cancel
                   </Button>
                 </div>
               )}
 
-              <div className="mt-8 pt-8 border-t border-[rgb(105,117,101)]">
+              <div className="mt-8 pt-8 border-t border-[#C0C0C0]/30">
                 <Button
                   onClick={handleLogout}
                   variant="destructive"
-                  className="flex items-center space-x-2 bg-red-600 text-white hover:bg-red-700"
-                  style={{ 
-                    backgroundColor: 'rgb(220, 38, 38)', 
-                    color: 'white'
-                  }}
+                  className="flex items-center space-x-2 bg-[#FF7E79] text-[#FFFFFF] hover:bg-[#FF7E79]/80"
                 >
                   <LogOut size={16} />
                   <span>Logout</span>
@@ -199,21 +191,20 @@ const Profile = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="rounded-lg shadow-sm p-6 border border-[rgb(105,117,101)]"
-              style={{ backgroundColor: 'rgb(24, 28, 20)' }}
+              className="rounded-lg shadow-sm p-6 border border-[#C0C0C0]/20"
+              style={{ 
+                backgroundColor: 'rgba(224, 224, 224, 0.05)',
+                backdropFilter: 'blur(20px)',
+                boxShadow: '0 8px 32px rgba(176, 238, 255, 0.1)'
+              }}
             >
-              <h3 className="text-lg font-semibold text-[rgb(236,223,204)] mb-4">Quick Actions</h3>
+              <h3 className="text-lg font-semibold text-[#FFFFFF] mb-4">Quick Actions</h3>
               
               <div className="space-y-3">
                 <Button
                   onClick={() => navigate('/orders')}
                   variant="outline"
-                  className="w-full justify-start border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] bg-transparent"
-                  style={{ 
-                    borderColor: 'rgb(105, 117, 101)',
-                    color: 'rgb(236, 223, 204)',
-                    backgroundColor: 'transparent'
-                  }}
+                  className="w-full justify-start border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10 bg-transparent"
                 >
                   <Clock className="mr-2" size={16} />
                   Order History
@@ -222,12 +213,7 @@ const Profile = () => {
                 <Button
                   onClick={() => navigate('/wishlist')}
                   variant="outline"
-                  className="w-full justify-start border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] bg-transparent"
-                  style={{ 
-                    borderColor: 'rgb(105, 117, 101)',
-                    color: 'rgb(236, 223, 204)',
-                    backgroundColor: 'transparent'
-                  }}
+                  className="w-full justify-start border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10 bg-transparent"
                 >
                   <Heart className="mr-2" size={16} />
                   Saved Collections
@@ -236,12 +222,7 @@ const Profile = () => {
                 <Button
                   onClick={() => navigate('/settings')}
                   variant="outline"
-                  className="w-full justify-start border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] bg-transparent"
-                  style={{ 
-                    borderColor: 'rgb(105, 117, 101)',
-                    color: 'rgb(236, 223, 204)',
-                    backgroundColor: 'transparent'
-                  }}
+                  className="w-full justify-start border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10 bg-transparent"
                 >
                   <Settings className="mr-2" size={16} />
                   Settings
@@ -255,32 +236,32 @@ const Profile = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="rounded-lg shadow-sm p-6 border border-[rgb(105,117,101)]"
-                style={{ backgroundColor: 'rgb(24, 28, 20)' }}
+                className="rounded-lg shadow-sm p-6 border border-[#C0C0C0]/20"
+                style={{ 
+                  backgroundColor: 'rgba(224, 224, 224, 0.05)',
+                  backdropFilter: 'blur(20px)',
+                  boxShadow: '0 8px 32px rgba(176, 238, 255, 0.1)'
+                }}
               >
-                <h3 className="text-lg font-semibold text-[rgb(236,223,204)] mb-4 flex items-center">
+                <h3 className="text-lg font-semibold text-[#FFFFFF] mb-4 flex items-center">
                   <ShoppingBag className="mr-2" size={16} />
                   Cart Overview
                 </h3>
                 
                 <div className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="text-[rgb(105,117,101)]">Items:</span>
-                    <span className="font-medium text-[rgb(236,223,204)]">{cart.length}</span>
+                    <span className="text-[#C0C0C0]">Items:</span>
+                    <span className="font-medium text-[#FFFFFF]">{cart.length}</span>
                   </div>
                   
                   <div className="flex justify-between">
-                    <span className="text-[rgb(105,117,101)]">Total:</span>
-                    <span className="font-medium text-[rgb(236,223,204)]">₹{cartTotal}</span>
+                    <span className="text-[#C0C0C0]">Total:</span>
+                    <span className="font-medium text-[#FFFFFF]">₹{cartTotal}</span>
                   </div>
                   
                   <Button
                     onClick={() => navigate('/cart')}
-                    className="w-full bg-[rgb(236,223,204)] text-[rgb(24,28,20)] hover:bg-[rgb(220,210,190)]"
-                    style={{ 
-                      backgroundColor: 'rgb(236, 223, 204)', 
-                      color: 'rgb(24, 28, 20)'
-                    }}
+                    className="w-full bg-[#FFD700] text-[#121212] hover:bg-[#B0EEFF]"
                   >
                     View Cart
                   </Button>

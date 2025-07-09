@@ -154,7 +154,7 @@ const Wishlist = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#1a1a1a' }}>
       <Navbar 
         onSearchOpen={() => {}}
         onCartOpen={() => {}}
@@ -191,6 +191,11 @@ const Wishlist = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 className="rounded-lg overflow-hidden shadow-sm border border-[#C0C0C0]/20 group futuristic-card"
+                style={{ 
+                  backgroundColor: 'rgba(224, 224, 224, 0.05)',
+                  backdropFilter: 'blur(20px)',
+                  boxShadow: '0 8px 32px rgba(176, 238, 255, 0.1)'
+                }}
               >
                 <div className="aspect-[3/4] overflow-hidden relative">
                   <img

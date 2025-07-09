@@ -93,7 +93,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#121212' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#1a1a1a' }}>
       <Navbar 
         onSearchOpen={() => {}}
         onCartOpen={() => {}}
@@ -107,7 +107,12 @@ const Settings = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-lg shadow-sm p-6 border border-[#C0C0C0]/20 futuristic-card"
+            className="rounded-lg shadow-sm p-6 border border-[#C0C0C0]/20"
+            style={{ 
+              backgroundColor: 'rgba(224, 224, 224, 0.05)',
+              backdropFilter: 'blur(20px)',
+              boxShadow: '0 8px 32px rgba(176, 238, 255, 0.1)'
+            }}
           >
             <h2 className="text-xl font-semibold text-[#FFFFFF] mb-4 flex items-center">
               <User className="mr-2" size={20} />
@@ -136,12 +141,12 @@ const Settings = () => {
               </div>
               
               <div>
-                <Label htmlFor="stylePreference" className="text-[#FFFFFF]">Style Preference</Label>
+                <Label htmlFor="phone" className="text-[#FFFFFF]">Phone</Label>
                 <Input
                   id="phone"
                   value={personalInfo.phone}
                   onChange={(e) => setPersonalInfo({...personalInfo, phone: e.target.value})}
-                  className="mt-1 bg-[rgb(60,61,55)] border-[rgb(105,117,101)] text-[rgb(236,223,204)]"
+                  className="mt-1 bg-[#121212] border-[#C0C0C0]/30 text-[#FFFFFF] focus:border-[#B0EEFF] focus:ring-[#B0EEFF]"
                 />
               </div>
             </div>
@@ -149,24 +154,14 @@ const Settings = () => {
             <div className="flex space-x-4">
               <Button 
                 onClick={handleSavePersonalInfo} 
-                className="bg-[rgb(236,223,204)] text-[rgb(24,28,20)] hover:bg-[rgb(220,210,190)] border-0"
-                style={{ 
-                  backgroundColor: 'rgb(236, 223, 204)', 
-                  color: 'rgb(24, 28, 20)',
-                  fontWeight: '500'
-                }}
+                className="bg-[#FFD700] text-[#121212] hover:bg-[#B0EEFF] border-0"
               >
                 Save Changes
               </Button>
               <Button 
                 onClick={handleChangePassword} 
                 variant="outline" 
-                className="border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] bg-transparent"
-                style={{ 
-                  borderColor: 'rgb(105, 117, 101)',
-                  color: 'rgb(236, 223, 204)',
-                  backgroundColor: 'transparent'
-                }}
+                className="border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10 bg-transparent"
               >
                 Change Password
               </Button>
@@ -178,8 +173,12 @@ const Settings = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="rounded-lg shadow-sm p-6 border border-[rgb(105,117,101)]"
-            style={{ backgroundColor: 'rgb(24, 28, 20)' }}
+            className="rounded-lg shadow-sm p-6 border border-[#C0C0C0]/20"
+            style={{ 
+              backgroundColor: 'rgba(224, 224, 224, 0.05)',
+              backdropFilter: 'blur(20px)',
+              boxShadow: '0 8px 32px rgba(176, 238, 255, 0.1)'
+            }}
           >
             <h2 className="text-xl font-semibold text-[rgb(236,223,204)] mb-4 flex items-center">
               <MapPin className="mr-2" size={20} />
@@ -188,18 +187,14 @@ const Settings = () => {
             
             <div className="space-y-4">
               {addresses.map((address) => (
-                <div key={address.id} className="border border-[rgb(105,117,101)] rounded-lg p-4">
+                <div key={address.id} className="border border-[#C0C0C0]/30 rounded-lg p-4">
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-2">
-                        <span className="font-medium text-[rgb(236,223,204)]">{address.type}</span>
+                        <span className="font-medium text-[#FFFFFF]">{address.type}</span>
                         {address.isDefault && (
                           <span 
-                            className="text-xs px-2 py-1 rounded font-medium"
-                            style={{ 
-                              backgroundColor: 'rgb(236, 223, 204)', 
-                              color: 'rgb(24, 28, 20)' 
-                            }}
+                            className="text-xs px-2 py-1 rounded font-medium bg-[#FFD700] text-[#121212]"
                           >
                             Default
                           </span>
@@ -210,19 +205,14 @@ const Settings = () => {
                           <textarea
                             value={address.address}
                             onChange={(e) => handleAddressChange(address.id, e.target.value)}
-                            className="w-full px-3 py-2 border border-[rgb(105,117,101)] rounded-md focus:outline-none focus:ring-2 focus:ring-[rgb(105,117,101)] bg-[rgb(60,61,55)] text-[rgb(236,223,204)]"
+                            className="w-full px-3 py-2 border border-[#C0C0C0]/30 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B0EEFF] bg-[#121212] text-[#FFFFFF]"
                             rows={3}
                           />
                           <div className="flex space-x-2">
                             <Button 
                               onClick={() => handleSaveAddress(address.id)}
                               size="sm" 
-                              className="bg-[rgb(236,223,204)] text-[rgb(24,28,20)] hover:bg-[rgb(220,210,190)] border-0"
-                              style={{ 
-                                backgroundColor: 'rgb(236, 223, 204)', 
-                                color: 'rgb(24, 28, 20)',
-                                fontWeight: '500'
-                              }}
+                              className="bg-[#FFD700] text-[#121212] hover:bg-[#B0EEFF] border-0"
                             >
                               Save
                             </Button>
@@ -235,19 +225,14 @@ const Settings = () => {
                               }}
                               variant="outline" 
                               size="sm" 
-                              className="border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] bg-transparent"
-                              style={{ 
-                                borderColor: 'rgb(105, 117, 101)',
-                                color: 'rgb(236, 223, 204)',
-                                backgroundColor: 'transparent'
-                              }}
+                              className="border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10 bg-transparent"
                             >
                               Cancel
                             </Button>
                           </div>
                         </div>
                       ) : (
-                        <p className="text-[rgb(105,117,101)] text-sm">{address.address}</p>
+                        <p className="text-[#C0C0C0] text-sm">{address.address}</p>
                       )}
                     </div>
                     {!address.isEditing && (
@@ -255,12 +240,7 @@ const Settings = () => {
                         onClick={() => handleEditAddress(address.id)}
                         variant="outline" 
                         size="sm" 
-                        className="border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] bg-transparent flex items-center space-x-1"
-                        style={{ 
-                          borderColor: 'rgb(105, 117, 101)',
-                          color: 'rgb(236, 223, 204)',
-                          backgroundColor: 'transparent'
-                        }}
+                        className="border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10 bg-transparent flex items-center space-x-1"
                       >
                         <Edit size={14} />
                         <span>Edit</span>
@@ -272,12 +252,7 @@ const Settings = () => {
               
               <Button 
                 variant="outline" 
-                className="w-full border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] bg-transparent"
-                style={{ 
-                  borderColor: 'rgb(105, 117, 101)',
-                  color: 'rgb(236, 223, 204)',
-                  backgroundColor: 'transparent'
-                }}
+                className="w-full border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10 bg-transparent"
                 onClick={() => {
                   showToast({
                     type: 'info',
@@ -296,10 +271,14 @@ const Settings = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="rounded-lg shadow-sm p-6 border border-[rgb(105,117,101)]"
-            style={{ backgroundColor: 'rgb(24, 28, 20)' }}
+            className="rounded-lg shadow-sm p-6 border border-[#C0C0C0]/20"
+            style={{ 
+              backgroundColor: 'rgba(224, 224, 224, 0.05)',
+              backdropFilter: 'blur(20px)',
+              boxShadow: '0 8px 32px rgba(176, 238, 255, 0.1)'
+            }}
           >
-            <h2 className="text-xl font-semibold text-[rgb(236,223,204)] mb-4 flex items-center">
+            <h2 className="text-xl font-semibold text-[#FFFFFF] mb-4 flex items-center">
               <Bell className="mr-2" size={20} />
               Notification Preferences
             </h2>
@@ -307,8 +286,8 @@ const Settings = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <Label className="text-[rgb(236,223,204)]">Order Updates</Label>
-                  <p className="text-sm text-[rgb(105,117,101)]">Get notified about order status changes</p>
+                  <Label className="text-[#FFFFFF]">Order Updates</Label>
+                  <p className="text-sm text-[#C0C0C0]">Get notified about order status changes</p>
                 </div>
                 <Switch
                   checked={notifications.orderUpdates}
@@ -325,8 +304,8 @@ const Settings = () => {
               
               <div className="flex items-center justify-between">
                 <div>
-                  <Label className="text-[rgb(236,223,204)]">Promotions</Label>
-                  <p className="text-sm text-[rgb(105,117,101)]">Receive promotional offers and discounts</p>
+                  <Label className="text-[#FFFFFF]">Promotions</Label>
+                  <p className="text-sm text-[#C0C0C0]">Receive promotional offers and discounts</p>
                 </div>
                 <Switch
                   checked={notifications.promotions}
@@ -343,8 +322,8 @@ const Settings = () => {
               
               <div className="flex items-center justify-between">
                 <div>
-                  <Label className="text-[rgb(236,223,204)]">Scan Reminders</Label>
-                  <p className="text-sm text-[rgb(105,117,101)]">Reminders to update your body scan</p>
+                  <Label className="text-[#FFFFFF]">Scan Reminders</Label>
+                  <p className="text-sm text-[#C0C0C0]">Reminders to update your body scan</p>
                 </div>
                 <Switch
                   checked={notifications.scanReminders}
@@ -366,10 +345,14 @@ const Settings = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="rounded-lg shadow-sm p-6 border border-[rgb(105,117,101)]"
-            style={{ backgroundColor: 'rgb(24, 28, 20)' }}
+            className="rounded-lg shadow-sm p-6 border border-[#C0C0C0]/20"
+            style={{ 
+              backgroundColor: 'rgba(224, 224, 224, 0.05)',
+              backdropFilter: 'blur(20px)',
+              boxShadow: '0 8px 32px rgba(176, 238, 255, 0.1)'
+            }}
           >
-            <h2 className="text-xl font-semibold text-[rgb(236,223,204)] mb-4 flex items-center">
+            <h2 className="text-xl font-semibold text-[#FFFFFF] mb-4 flex items-center">
               <Shield className="mr-2" size={20} />
               Privacy & Security
             </h2>
@@ -378,36 +361,21 @@ const Settings = () => {
               <Button 
                 onClick={handleDownloadData}
                 variant="outline" 
-                className="w-full justify-start border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] bg-transparent"
-                style={{ 
-                  borderColor: 'rgb(105, 117, 101)',
-                  color: 'rgb(236, 223, 204)',
-                  backgroundColor: 'transparent'
-                }}
+                className="w-full justify-start border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10 bg-transparent"
               >
                 Download My Data
               </Button>
               
               <Button 
                 variant="outline" 
-                className="w-full justify-start border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] bg-transparent"
-                style={{ 
-                  borderColor: 'rgb(105, 117, 101)',
-                  color: 'rgb(236, 223, 204)',
-                  backgroundColor: 'transparent'
-                }}
+                className="w-full justify-start border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10 bg-transparent"
               >
                 Privacy Policy
               </Button>
               
               <Button 
                 variant="outline" 
-                className="w-full justify-start border-[rgb(105,117,101)] text-[rgb(236,223,204)] hover:bg-[rgb(60,61,55)] bg-transparent"
-                style={{ 
-                  borderColor: 'rgb(105, 117, 101)',
-                  color: 'rgb(236, 223, 204)',
-                  backgroundColor: 'transparent'
-                }}
+                className="w-full justify-start border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10 bg-transparent"
               >
                 Terms of Service
               </Button>
