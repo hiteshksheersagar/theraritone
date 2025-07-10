@@ -34,56 +34,56 @@ const ButterflyScene: React.FC = () => {
         <motion.div
           className="relative"
           style={{
-            width: '120vw',
-            height: '80vh',
+            width: '110vw',
+            height: '75vh',
             opacity: 0.6,
             filter: 'drop-shadow(0 0 40px rgba(176, 238, 255, 0.3))',
             mixBlendMode: 'lighten'
           }}
           animate={{ 
             scale: [1, 1.03, 1],
-            y: [0, -12, 0]
+            y: [0, -8, 0]
           }}
           transition={{
             repeat: Infinity,
-            duration: 10,
+            duration: 8,
             ease: "easeInOut"
           }}
         >
           {/* Futuristic Moth/Butterfly SVG with Updated Color Palette */}
           <svg
-            viewBox="0 0 1400 900"
+            viewBox="0 0 1400 800"
             className="w-full h-full"
             style={{ filter: 'brightness(1.2) contrast(1.1)' }}
           >
             {/* Butterfly Body - Thick, Realistic Body with Neon Glow */}
             <motion.ellipse
               cx="700"
-              cy="450"
+              cy="400"
               rx="12"
-              ry="180"
+              ry="160"
               fill="rgba(176, 238, 255, 0.8)"
               style={{ 
                 filter: 'drop-shadow(0 0 15px rgba(176, 238, 255, 0.8))',
-                transformOrigin: '700px 450px'
+                transformOrigin: '700px 400px'
               }}
             />
             
             {/* Body Segments with Neon Accents */}
-            <ellipse cx="700" cy="380" rx="8" ry="15" fill="rgba(255, 215, 0, 0.6)" />
-            <ellipse cx="700" cy="420" rx="10" ry="20" fill="rgba(176, 238, 255, 0.7)" />
-            <ellipse cx="700" cy="480" rx="9" ry="18" fill="rgba(255, 215, 0, 0.6)" />
-            <ellipse cx="700" cy="520" rx="7" ry="15" fill="rgba(176, 238, 255, 0.5)" />
+            <ellipse cx="700" cy="340" rx="8" ry="15" fill="rgba(255, 215, 0, 0.6)" />
+            <ellipse cx="700" cy="380" rx="10" ry="20" fill="rgba(176, 238, 255, 0.7)" />
+            <ellipse cx="700" cy="420" rx="9" ry="18" fill="rgba(255, 215, 0, 0.6)" />
+            <ellipse cx="700" cy="460" rx="7" ry="15" fill="rgba(176, 238, 255, 0.5)" />
             
             {/* LEFT UPPER WING - Large, Translucent with Holographic Effect */}
             <motion.path
-              d="M700 350 Q500 200 250 250 Q100 300 120 400 Q140 500 250 550 Q400 580 550 520 Q650 480 700 420"
+              d="M700 300 Q500 150 250 200 Q100 250 120 350 Q140 450 250 500 Q400 530 550 470 Q650 430 700 370"
               fill="rgba(176, 238, 255, 0.3)"
               stroke="rgba(255, 215, 0, 0.6)"
               strokeWidth="1"
               style={{ 
                 filter: 'drop-shadow(0 0 25px rgba(176, 238, 255, 0.4))',
-                transformOrigin: '700px 350px'
+                transformOrigin: '700px 300px'
               }}
               animate={{
                 rotateZ: [0, -2, 0],
@@ -100,13 +100,13 @@ const ButterflyScene: React.FC = () => {
             
             {/* RIGHT UPPER WING - Large, Translucent with Holographic Effect */}
             <motion.path
-              d="M700 350 Q900 200 1150 250 Q1300 300 1280 400 Q1260 500 1150 550 Q1000 580 850 520 Q750 480 700 420"
+              d="M700 300 Q900 150 1150 200 Q1300 250 1280 350 Q1260 450 1150 500 Q1000 530 850 470 Q750 430 700 370"
               fill="rgba(176, 238, 255, 0.3)"
               stroke="rgba(255, 215, 0, 0.6)"
               strokeWidth="1"
               style={{ 
                 filter: 'drop-shadow(0 0 25px rgba(176, 238, 255, 0.4))',
-                transformOrigin: '700px 350px'
+                transformOrigin: '700px 300px'
               }}
               animate={{
                 rotateZ: [0, 2, 0],
@@ -123,13 +123,13 @@ const ButterflyScene: React.FC = () => {
             
             {/* LEFT LOWER WING - Distinctive Tail Shape with Neon Coral */}
             <motion.path
-              d="M700 450 Q550 550 400 600 Q300 650 280 720 Q290 780 350 770 Q420 750 500 700 Q600 650 700 580"
+              d="M700 400 Q550 500 400 550 Q300 600 280 670 Q290 730 350 720 Q420 700 500 650 Q600 600 700 530"
               fill="rgba(255, 126, 121, 0.25)"
               stroke="rgba(184, 143, 255, 0.5)"
               strokeWidth="1"
               style={{ 
                 filter: 'drop-shadow(0 0 20px rgba(255, 126, 121, 0.3))',
-                transformOrigin: '700px 450px'
+                transformOrigin: '700px 400px'
               }}
               animate={{
                 rotateZ: [0, -1.5, 0],
@@ -146,13 +146,13 @@ const ButterflyScene: React.FC = () => {
             
             {/* RIGHT LOWER WING - Distinctive Tail Shape with Neon Coral */}
             <motion.path
-              d="M700 450 Q850 550 1000 600 Q1100 650 1120 720 Q1110 780 1050 770 Q980 750 900 700 Q800 650 700 580"
+              d="M700 400 Q850 500 1000 550 Q1100 600 1120 670 Q1110 730 1050 720 Q980 700 900 650 Q800 600 700 530"
               fill="rgba(255, 126, 121, 0.25)"
               stroke="rgba(184, 143, 255, 0.5)"
               strokeWidth="1"
               style={{ 
                 filter: 'drop-shadow(0 0 20px rgba(255, 126, 121, 0.3))',
-                transformOrigin: '700px 450px'
+                transformOrigin: '700px 400px'
               }}
               animate={{
                 rotateZ: [0, 1.5, 0],
@@ -169,7 +169,7 @@ const ButterflyScene: React.FC = () => {
 
             {/* Wing Vein Patterns - Left Upper Wing with Neon Effects */}
             <motion.path
-              d="M700 350 Q600 300 500 320 Q400 340 350 380"
+              d="M700 300 Q600 250 500 270 Q400 290 350 330"
               stroke="rgba(176, 238, 255, 0.6)"
               strokeWidth="0.5"
               fill="none"
@@ -181,7 +181,7 @@ const ButterflyScene: React.FC = () => {
               }}
             />
             <motion.path
-              d="M650 380 Q550 360 450 380 Q350 400 300 440"
+              d="M650 330 Q550 310 450 330 Q350 350 300 390"
               stroke="rgba(255, 215, 0, 0.5)"
               strokeWidth="0.5"
               fill="none"
@@ -196,7 +196,7 @@ const ButterflyScene: React.FC = () => {
 
             {/* Wing Vein Patterns - Right Upper Wing with Neon Effects */}
             <motion.path
-              d="M700 350 Q800 300 900 320 Q1000 340 1050 380"
+              d="M700 300 Q800 250 900 270 Q1000 290 1050 330"
               stroke="rgba(176, 238, 255, 0.6)"
               strokeWidth="0.5"
               fill="none"
@@ -209,7 +209,7 @@ const ButterflyScene: React.FC = () => {
               }}
             />
             <motion.path
-              d="M750 380 Q850 360 950 380 Q1050 400 1100 440"
+              d="M750 330 Q850 310 950 330 Q1050 350 1100 390"
               stroke="rgba(255, 215, 0, 0.5)"
               strokeWidth="0.5"
               fill="none"
@@ -224,7 +224,7 @@ const ButterflyScene: React.FC = () => {
 
             {/* Wing Spots/Patterns - Holographic */}
             <motion.ellipse
-              cx="450" cy="380" rx="20" ry="15"
+              cx="450" cy="330" rx="20" ry="15"
               fill="rgba(184, 143, 255, 0.3)"
               animate={{ opacity: [0.2, 0.5, 0.2] }}
               transition={{
@@ -234,7 +234,7 @@ const ButterflyScene: React.FC = () => {
               }}
             />
             <motion.ellipse
-              cx="950" cy="380" rx="20" ry="15"
+              cx="950" cy="330" rx="20" ry="15"
               fill="rgba(184, 143, 255, 0.3)"
               animate={{ opacity: [0.2, 0.5, 0.2] }}
               transition={{
@@ -247,7 +247,7 @@ const ButterflyScene: React.FC = () => {
 
             {/* Wing Edge Details - Feathered Appearance with Neon */}
             <motion.path
-              d="M250 250 Q200 280 180 320 Q190 350 220 380"
+              d="M250 200 Q200 230 180 270 Q190 300 220 330"
               stroke="rgba(255, 126, 121, 0.4)"
               strokeWidth="1"
               fill="none"
@@ -259,7 +259,7 @@ const ButterflyScene: React.FC = () => {
               }}
             />
             <motion.path
-              d="M1150 250 Q1200 280 1220 320 Q1210 350 1180 380"
+              d="M1150 200 Q1200 230 1220 270 Q1210 300 1180 330"
               stroke="rgba(255, 126, 121, 0.4)"
               strokeWidth="1"
               fill="none"
@@ -274,7 +274,7 @@ const ButterflyScene: React.FC = () => {
             
             {/* Antennae - Delicate and Realistic with Neon Glow */}
             <motion.path
-              d="M690 320 Q680 300 670 280 Q665 270 660 260"
+              d="M690 270 Q680 250 670 230 Q665 220 660 210"
               stroke="rgba(176, 238, 255, 0.9)"
               strokeWidth="2"
               fill="none"
@@ -286,7 +286,7 @@ const ButterflyScene: React.FC = () => {
               }}
             />
             <motion.path
-              d="M710 320 Q720 300 730 280 Q735 270 740 260"
+              d="M710 270 Q720 250 730 230 Q735 220 740 210"
               stroke="rgba(176, 238, 255, 0.9)"
               strokeWidth="2"
               fill="none"
@@ -299,8 +299,8 @@ const ButterflyScene: React.FC = () => {
             />
             
             {/* Antennae Tips with Neon Glow */}
-            <circle cx="660" cy="260" r="3" fill="rgba(255, 215, 0, 0.9)" style={{ filter: 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.8))' }} />
-            <circle cx="740" cy="260" r="3" fill="rgba(255, 215, 0, 0.9)" style={{ filter: 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.8))' }} />
+            <circle cx="660" cy="210" r="3" fill="rgba(255, 215, 0, 0.9)" style={{ filter: 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.8))' }} />
+            <circle cx="740" cy="210" r="3" fill="rgba(255, 215, 0, 0.9)" style={{ filter: 'drop-shadow(0 0 5px rgba(255, 215, 0, 0.8))' }} />
 
             {/* Wing Transparency Gradients */}
             <defs>
@@ -313,7 +313,7 @@ const ButterflyScene: React.FC = () => {
 
             {/* Overlay Transparency Effects */}
             <motion.ellipse
-              cx="450" cy="400" rx="150" ry="100"
+              cx="450" cy="350" rx="150" ry="100"
               fill="url(#wingGradient)"
               animate={{ opacity: [0.2, 0.4, 0.2] }}
               transition={{
@@ -323,7 +323,7 @@ const ButterflyScene: React.FC = () => {
               }}
             />
             <motion.ellipse
-              cx="950" cy="400" rx="150" ry="100"
+              cx="950" cy="350" rx="150" ry="100"
               fill="url(#wingGradient)"
               animate={{ opacity: [0.2, 0.4, 0.2] }}
               transition={{

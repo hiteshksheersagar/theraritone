@@ -1,658 +1,400 @@
-'use client';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Camera, ShoppingBag, Sparkles, Star, TrendingUp, Mail, Phone, MapPin, Heart } from 'lucide-react';
-import Navbar from '@/components/Navbar';
-import SearchOverlay from '@/components/SearchOverlay';
-import ChatWidget from '@/components/ChatWidget';
-import ProductModal from '@/components/ProductModal';
-import AddToCartToast from '@/components/AddToCartToast';
-import ButterflyScene from '@/components/ButterflyScene';
-import { useToast } from '@/components/ToastContainer';
-import { useAuth } from '@/contexts/AuthContext';
-import { addToCart } from '@/lib/user';
+/* UPDATED FUTURISTIC COLOR PALETTE - Deep Charcoal Base */
+@layer base {
+  :root {
+    --background: 18 18 18; /* #121212 - Deep Charcoal Background */
+    --foreground: 255 255 255; /* #FFFFFF - White Text */
 
-const Index = () => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [wishlist, setWishlist] = useState<string[]>([]);
-  const [showCartToast, setShowCartToast] = useState(false);
-  const [cartToastItem, setCartToastItem] = useState(null);
-  const navigate = useNavigate();
-  const { showToast } = useToast();
-  const { user, refreshCart, addToLocalCart } = useAuth();
+    --card: 18 18 18; /* #121212 - Deep Charcoal Cards */
+    --card-foreground: 255 255 255; /* #FFFFFF */
 
-  // Detect mobile device
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+    --popover: 18 18 18; /* #121212 */
+    --popover-foreground: 255 255 255; /* #FFFFFF */
 
-  // Load wishlist
-  useEffect(() => {
-    const savedWishlist = localStorage.getItem('wishlist');
-    if (savedWishlist) {
-      setWishlist(JSON.parse(savedWishlist));
-    }
-  }, []);
+    --primary: 255 255 255; /* #FFFFFF - White Primary */
+    --primary-foreground: 18 18 18; /* #121212 */
 
-  // Product data
-  const catalogProducts = [
-    {
-      id: '1',
-      name: 'Bold vibe Oversize Tshirt',
-      description: 'Luxury cotton t-shirt with premium finish and exceptional comfort. Made from 100% organic cotton.',
-      price: 696.00,
-      imageURL: 'Raritone Collection/Bold vibe Oversize Tshirt.jpg',
-      category: 'Tops',
-      stock: 10,
-      tags: ['Cotton', 'Premium', 'Casual'],
-      sizes: ['XS', 'S', 'M', 'L', 'XL'],
-      createdAt: new Date(),
-      rating: 4.8
-    },
-    {
-      id: '2',
-      name: 'Raritone Hoodie',
-      description: 'Raritone Hoodie from Theraritone. Crafted from premium materials, this hoodie ensures warmth and durability while offering a modern, minimalist design perfect for any wardrobe.',
-      price: 1043.13,
-      imageURL: 'Raritone Collection/Hoddie1(F).jpg',
-      backImageURL: 'Raritone Collection/Hoddie1(B).jpg',
-      category: 'Outerwear',
-      stock: 5,
-      tags: ['Hoodie', 'designer', 'Cozy'],
-      sizes: ['28', '30', '32', '34', '36'],
-      createdAt: new Date(),
-      rating: 4.9
-    },
-    {
-      id: '3',
-      name: 'Kiss me again Oversize Tshirt',
-      description: 'Its soft, premium fabric ensures lasting wear, while the chic, modern design adds a touch of effortless cool.',
-      price: 399.20,
-      imageURL: 'Raritone Collection/Kiss me again.jpeg',
-      category: 'Tops',
-      stock: 8,
-      tags: ['Tshirt', 'luxury', 'comfort'],
-      sizes: ['S', 'M', 'L', 'XL'],
-      createdAt: new Date(),
-      rating: 4.7
-    },
-    {
-      id: '4',
-      name: 'Pop Art tshirt',
-      description: 'This wearable masterpiece showcases bold, colorful graphics that pay homage to the iconic Pop Art movement, making it a statement piece in any wardrobe.',
-      price: 434.13,
-      imageURL: 'https://static.wixstatic.com/media/3903b5_4fde7750734f4f188841c462d77d27bb~mv2.jpg/v1/fill/w_500,h_667,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3903b5_4fde7750734f4f188841c462d77d27bb~mv2.jpg',
-      category: 'Tops',
-      stock: 0,
-      tags: ['Tshirt', 'luxury', 'comfort'],
-      sizes: ['XS', 'S', 'M', 'L'],
-      createdAt: new Date(),
-      rating: 4.6
-    },
-    {
-      id: '5',
-      name: 'Raritone David Bowie Hoodie',
-      description: 'Celebrate the legacy of a music legend with the Raritone David Bowie Hoodie, designed exclusively for the discerning fan at Theraritone.',
-      price: 7999,
-      imageURL: 'https://static.wixstatic.com/media/3903b5_9e76791087d8471da8745d15ce88f383~mv2.jpg/v1/fill/w_346,h_490,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3903b5_9e76791087d8471da8745d15ce88f383~mv2.jpg',
-      backImageURL: 'https://static.wixstatic.com/media/3903b5_d1930f8ee63542d0a3d165512779be61~mv2.jpg/v1/fill/w_348,h_490,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3903b5_d1930f8ee63542d0a3d165512779be61~mv2.jpg',
-      category: 'Outerwear',
-      stock: 4,
-      tags: ['leather', 'jacket', 'premium'],
-      sizes: ['S', 'M', 'L', 'XL'],
-      colors: ['Black', 'Brown'],
-      createdAt: new Date(),
-      rating: 4.9
-    }
-  ];
+    --secondary: 224 224 224; /* #E0E0E0 - Silver Light */
+    --secondary-foreground: 18 18 18; /* #121212 */
 
-  // New Arrivals
-  const newArrivals = catalogProducts
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-    .slice(0, 4)
-    .map(product => ({
-      id: product.id,
-      name: product.name,
-      price: `₹${product.price}`,
-      image: product.imageURL,
-      tag: product.stock === 0 ? 'Out of Stock' : 'New'
-    }));
+    --muted: 192 192 192; /* #C0C0C0 - Silver Dark */
+    --muted-foreground: 18 18 18; /* #121212 */
 
-  // Categories
-  const categories = [
-    { 
-      name: "T-Shirts", 
-      image: catalogProducts.find(p => p.category === 'Tops')?.imageURL || "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab", 
-      count: `${catalogProducts.filter(p => p.category === 'Tops').length} Items`, 
-      category: "Tops" 
-    },
-    { 
-      name: "Hoodies", 
-      image: catalogProducts.find(p => p.tags.includes('Hoodie'))?.imageURL || "https://images.unsplash.com/photo-1556821840-3a63f95609a7", 
-      count: `${catalogProducts.filter(p => p.tags.includes('Hoodie')).length} Items`, 
-      category: "Outerwear" 
-    },
-    { 
-      name: "Outerwear", 
-      image: catalogProducts.find(p => p.category === 'Outerwear')?.imageURL || "https://images.unsplash.com/photo-1542272604-787c3835535d", 
-      count: `${catalogProducts.filter(p => p.category === 'Outerwear').length} Items`, 
-      category: "Outerwear" 
-    },
-    { 
-      name: "Premium", 
-      image: catalogProducts.find(p => p.tags.includes('premium'))?.imageURL || "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446", 
-      count: `${catalogProducts.filter(p => p.tags.includes('premium')).length} Items`, 
-      category: "Premium" 
-    }
-  ];
+    --accent: 176 238 255; /* #B0EEFF - Highlight Blue */
+    --accent-foreground: 18 18 18; /* #121212 */
 
-  // Best Picks
-  const bestPicks = catalogProducts
-    .sort((a, b) => (b.rating || 0) - (a.rating || 0))
-    .slice(0, 3)
-    .map(product => ({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.imageURL,
-      backImageURL: product.backImageURL,
-      rating: product.rating || 4.5,
-      category: product.category,
-      description: product.description,
-      stock: product.stock,
-      tags: product.tags,
-      sizes: product.sizes,
-      colors: product.colors
-    }));
+    --destructive: 255 126 121; /* #FF7E79 - Coral Accent */
+    --destructive-foreground: 255 255 255; /* #FFFFFF */
 
-  // Navigate to catalog with category filter
-  const handleCategoryClick = (category: string) => {
-    navigate(`/catalog?category=${encodeURIComponent(category)}`);
-  };
+    --border: 192 192 192; /* #C0C0C0 - Silver Dark */
+    --input: 18 18 18; /* #121212 - Deep Charcoal Input Background */
+    --ring: 176 238 255; /* #B0EEFF - Highlight Blue */
 
-  // Handle New Arrivals product click - open modal instead of navigating
-  const handleNewArrivalClick = (productId: string) => {
-    const product = catalogProducts.find(p => p.id === productId);
-    if (product) {
-      setSelectedProduct(product);
-      setIsModalOpen(true);
-    }
-  };
+    --navbar-bg: 18 18 18; /* #121212 - Deep Charcoal Navbar */
+    --navbar-border: 255 215 0; /* #FFD700 - Highlight Yellow */
 
-  // Handle Best Picks product click
-  const handleBestPickClick = (product: any) => {
-    setSelectedProduct(product);
-    setIsModalOpen(true);
-  };
+    --radius: 0.5rem;
+  }
+}
 
-  // Handle add to cart from modal
-  const handleAddToCart = async (product: any, quantity: number, size?: string, color?: string) => {
-    const cartItem = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      quantity,
-      size,
-      imageURL: product.image
-    };
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
 
-    if (user) {
-      try {
-        await addToCart(user.uid, cartItem);
-        await refreshCart();
-      } catch (error) {
-        console.error('Error adding to cart:', error);
-        showToast({
-          type: 'error',
-          title: 'Error',
-          message: 'Failed to add item to cart. Please try again.'
-        });
-        return;
-      }
-    } else {
-      addToLocalCart(cartItem);
-    }
+  html {
+    background: #121212;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
 
-    setCartToastItem(cartItem);
-    setShowCartToast(true);
-  };
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #121212;
+    color: #FFFFFF;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    touch-action: manipulation;
+  }
 
-  // Handle add to wishlist
-  const handleAddToWishlist = (productId: string) => {
-    const currentWishlist = [...wishlist];
-    if (!currentWishlist.includes(productId)) {
-      currentWishlist.push(productId);
-      setWishlist(currentWishlist);
-      localStorage.setItem('wishlist', JSON.stringify(currentWishlist));
-      
-      window.dispatchEvent(new Event('wishlistUpdated'));
-      
-      showToast({
-        type: 'success',
-        title: 'Added to Wishlist',
-        message: 'Item has been saved to your wishlist!'
-      });
-    } else {
-      const updatedWishlist = currentWishlist.filter(id => id !== productId);
-      setWishlist(updatedWishlist);
-      localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
-      
-      window.dispatchEvent(new Event('wishlistUpdated'));
-      
-      showToast({
-        type: 'info',
-        title: 'Removed from Wishlist',
-        message: 'Item has been removed from your wishlist.'
-      });
-    }
-  };
+  /* Prevent zoom on input focus on iOS */
+  input, select, textarea {
+    font-size: 16px;
+  }
 
-  // Quick add to wishlist for new arrivals
-  const quickAddToWishlist = (e: React.MouseEvent, productId: string) => {
-    e.stopPropagation();
-    handleAddToWishlist(productId.toString());
-  };
+  /* Improve button touch targets on mobile */
+  button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
 
-  return (
-    <div className="min-h-screen text-white" style={{ background: '#121212' }}>
-      {/* Navigation */}
-      <Navbar 
-        onSearchOpen={() => setIsSearchOpen(true)}
-        onCartOpen={() => setIsCartOpen(true)}
-      />
+/* FUTURISTIC GLASSMORPHISM CORE STYLES */
+.glass {
+  background: rgba(224, 224, 224, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(192, 192, 192, 0.3);
+  box-shadow: 0 8px 32px rgba(176, 238, 255, 0.15);
+}
 
-      {/* CINEMATIC 3D HERO SECTION */}
-      <div className="relative min-h-screen overflow-hidden flex items-center justify-center"
-           style={{
-             background: 'linear-gradient(135deg, #121212 0%, #1a1a1a 50%, #0f0f23 100%)',
-           }}>
-        {/* 3D Butterfly Background - Restored and Positioned */}
-        <div className="absolute inset-0 w-full h-full" style={{ transform: 'translateY(-8vh)', zIndex: 1 }}>
-          <ButterflyScene />
-        </div>
-        
-        {/* Subtle gradient overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" style={{ zIndex: 2 }} />
+.glass-strong {
+  background: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(192, 192, 192, 0.4);
+  box-shadow: 0 12px 40px rgba(176, 238, 255, 0.2);
+}
 
-        {/* Hero Content - Centered Logo within Butterfly */}
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-8" style={{ zIndex: 3, transform: 'translateY(-5vh)' }}>
-          <div className="p-8 sm:p-12 lg:p-16">
-            <div className="mb-8">
-              <img
-                src="/IMG-20250305-WA0003-removebg-preview.png"
-                alt="RARITONE"
-                className="mx-auto w-full max-w-xs sm:max-w-2xl h-auto float-animation"
-                style={{ 
-                  filter: 'drop-shadow(0 0 40px rgba(176, 238, 255, 0.6)) brightness(1.1)',
-                  textShadow: '0 0 20px rgba(255, 215, 0, 0.4)'
-                }}
-              />
-            </div>
+.glass-navbar {
+  background: rgba(18, 18, 18, 0.98);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.4);
+  box-shadow: 0 4px 24px rgba(176, 238, 255, 0.15);
+}
 
-            <p className="text-subtitle font-light mb-16 neon-blue opacity-90" 
-               style={{ 
-                 textShadow: '0 2px 10px rgba(0,0,0,0.8), 0 0 20px rgba(176, 238, 255, 0.3)',
-                 filter: 'brightness(1.2)'
-               }}>
-              Fashion Meets Technology
-            </p>
+.glass-card {
+  background: rgba(26, 26, 26, 0.85);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(192, 192, 192, 0.3);
+  box-shadow: 0 8px 32px rgba(184, 143, 255, 0.15);
+}
 
-            {/* Action Buttons with Enhanced Visibility */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-16">
-              <button
-                className="btn-glass font-medium flex items-center space-x-3 rounded-full justify-center w-full max-w-xs sm:min-w-[220px] px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base hover-glow"
-                onClick={() => navigate('/scan')}
-                style={{
-                  background: 'rgba(18, 18, 18, 0.8)',
-                  border: '1px solid rgba(176, 238, 255, 0.4)',
-                  backdropFilter: 'blur(20px)',
-                  boxShadow: '0 8px 32px rgba(176, 238, 255, 0.2)'
-                }}
-              >
-                <Camera size={isMobile ? 18 : 20} className="neon-blue" />
-                <span className="text-white">Start Body Scan</span>
-              </button>
-              
-              <button
-                className="btn-glass-primary font-medium flex items-center space-x-3 rounded-full justify-center w-full max-w-xs sm:min-w-[220px] px-6 py-3 sm:px-8 sm:py-4 text-sm sm:text-base"
-                onClick={() => navigate('/catalog')}
-                style={{
-                  background: 'linear-gradient(135deg, #B0EEFF 0%, #FFD700 100%)',
-                  color: '#121212',
-                  border: '1px solid rgba(255, 215, 0, 1)',
-                  backdropFilter: 'blur(20px)',
-                  boxShadow: '0 8px 32px rgba(255, 215, 0, 0.3)'
-                }}
-              >
-                <ShoppingBag size={isMobile ? 18 : 20} />
-                <span>Browse Collection</span>
-              </button>
-            </div>
+.glass-chat {
+  background: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(176, 238, 255, 0.4);
+  box-shadow: 0 16px 48px rgba(184, 143, 255, 0.25);
+}
 
-            {/* Notice Text with Better Visibility */}
-            <p className="max-w-md mx-auto leading-relaxed text-xs sm:text-sm px-4 opacity-80"
-               style={{ 
-                 textShadow: '0 2px 8px rgba(0,0,0,0.8)',
-                 background: 'rgba(18,18,18,0.8)',
-                 padding: '8px 16px',
-                 borderRadius: '8px',
-                 backdropFilter: 'blur(10px)',
-                 border: '1px solid rgba(192, 192, 192, 0.2)',
-                 color: '#E0E0E0'
-               }}>
-              This site uses webcam access to enable AI-powered try-ons. Your camera data is never stored or shared.
-            </p>
-          </div>
-        </div>
-      </div>
+/* SMOOTH TRANSITIONS */
+.transition-glass {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-      {/* NEW ARRIVALS SECTION */}
-      <section className="py-12 sm:py-20" 
-               style={{ 
-                 background: 'linear-gradient(180deg, #1a1a1a 0%, #0f0f23 50%, #1a1a1a 100%)',
-               }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-16">
-            <h2 className="text-hero font-light mb-4 text-white flex items-center justify-center neon-flicker">
-              <Sparkles className="mr-3 neon-yellow" size={isMobile ? 24 : 32} />
-              New Arrivals
-            </h2>
-            <p className="text-subtitle text-gray-300 max-w-2xl mx-auto px-4">
-              Discover our latest collections, meticulously crafted and designed for the modern luxury connoisseur.
-            </p>
-          </div>
+.transition-smooth {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {newArrivals.map((item) => (
-              <div
-                key={item.id}
-                className="group cursor-pointer"
-                onClick={() => handleNewArrivalClick(item.id)}
-              >
-                <div className="futuristic-card rounded-2xl overflow-hidden transition-glass hover-glass">
-                  <div className="aspect-[3/4] relative overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute top-3 left-3">
-                      <span className={`font-medium rounded-full px-3 py-1 text-xs backdrop-blur-md ${
-                        item.tag === 'Out of Stock' 
-                          ? 'out-of-stock-bubble' 
-                          : 'new-arrival-bubble'
-                      }`}>
-                        {item.tag}
-                      </span>
-                    </div>
-                    
-                    {/* Wishlist Heart Button */}
-                    <button
-                      onClick={(e) => quickAddToWishlist(e, item.id.toString())}
-                      className={`absolute top-3 right-3 p-2 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 backdrop-blur-md ${
-                        wishlist.includes(item.id.toString())
-                          ? 'bg-red-500/80 text-white'
-                          : 'bg-black/60 text-white hover:bg-blue-400/30 border border-blue-400/30'
-                      }`}
-                    >
-                      <Heart 
-                        size={14} 
-                        className={wishlist.includes(item.id.toString()) ? 'fill-current' : ''} 
-                      />
-                    </button>
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-medium mb-2 text-white text-base sm:text-lg">
-                      {item.name}
-                    </h3>
-                    <p className="text-gray-300 text-sm neon-yellow">
-                      {item.price}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+/* FUTURISTIC HOVER EFFECTS */
+.hover-glass:hover {
+  background: rgba(224, 224, 224, 0.12);
+  border-color: rgba(176, 238, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(176, 238, 255, 0.25);
+}
 
-      {/* CATEGORIES SECTION */}
-      <section className="py-12 sm:py-20" 
-               style={{ 
-                 background: 'linear-gradient(180deg, #1a1a1a 0%, #121212 50%, #0f0f23 100%)',
-               }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-16">
-            <h2 className="text-hero font-light mb-4 text-white flex items-center justify-center neon-flicker">
-              <TrendingUp className="mr-3 neon-blue" size={isMobile ? 24 : 32} />
-              Shop by Category
-            </h2>
-            <p className="text-subtitle text-gray-300 max-w-2xl mx-auto px-4">
-              Explore our diverse range of fashion categories, each carefully curated for your unique style.
-            </p>
-          </div>
+.hover-glow:hover {
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {categories.map((category) => (
-              <div
-                key={category.name}
-                className="group cursor-pointer"
-                onClick={() => handleCategoryClick(category.category)}
-              >
-                <div className="futuristic-card rounded-2xl overflow-hidden transition-glass hover-glass">
-                  <div className="aspect-square relative overflow-hidden">
-                    <img
-                      src={category.image}
-                      alt={category.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  </div>
-                  <div className="text-center p-4">
-                    <h3 className="font-medium mb-1 text-white text-base sm:text-lg">
-                      {category.name}
-                    </h3>
-                    <p className="text-gray-300 text-sm">
-                      {category.count}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+/* NEON ANIMATIONS */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) scale(1); 
+  }
+  50% { 
+    transform: translateY(-10px) scale(1.02); 
+  }
+}
 
-      {/* BEST PICKS SECTION */}
-      <section className="py-12 sm:py-20" 
-               style={{ 
-                 background: 'linear-gradient(180deg, #0f0f23 0%, #1a1a1a 50%, #121212 100%)',
-               }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-16">
-            <h2 className="text-hero font-light mb-4 text-white flex items-center justify-center neon-flicker">
-              <Star className="mr-3 neon-coral" size={isMobile ? 24 : 32} />
-              Best Picks
-            </h2>
-            <p className="text-subtitle text-gray-300 max-w-2xl mx-auto px-4">
-              Our most popular items, loved by customers worldwide for their exceptional quality and style.
-            </p>
-          </div>
+@keyframes glow-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(176, 238, 255, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  }
+}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {bestPicks.map((item) => (
-              <div
-                key={item.id}
-                className="group cursor-pointer"
-                onClick={() => handleBestPickClick(item)}
-              >
-                <div className="futuristic-card rounded-2xl overflow-hidden transition-glass hover-glass">
-                  <div className="aspect-[3/4] relative overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    {/* Wishlist Heart Button */}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleAddToWishlist(item.id);
-                      }}
-                      className={`absolute top-4 right-4 p-2 rounded-full transition-all duration-200 opacity-0 group-hover:opacity-100 backdrop-blur-md ${
-                        wishlist.includes(item.id)
-                          ? 'bg-red-500/80 text-white'
-                          : 'bg-black/60 text-white hover:bg-blue-400/30 border border-blue-400/30'
-                      }`}
-                    >
-                      <Heart 
-                        size={16} 
-                        className={wishlist.includes(item.id) ? 'fill-current' : ''} 
-                      />
-                    </button>
-                  </div>
-                  <div className="p-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-medium text-white text-base sm:text-lg">
-                        {item.name}
-                      </h3>
-                      <div className="flex items-center space-x-1">
-                        <Star size={14} className="text-yellow-400 fill-current" />
-                        <span className="text-gray-300 text-sm">
-                          {item.rating}
-                        </span>
-                      </div>
-                    </div>
-                    <p className="text-gray-300 text-sm neon-yellow">
-                      ₹{item.price}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+@keyframes neon-flicker {
+  0%, 100% { 
+    text-shadow: 0 0 10px rgba(176, 238, 255, 0.8);
+  }
+  50% { 
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
+  }
+}
 
-      {/* FOOTER SECTION */}
-      <footer className="py-8 sm:py-16 border-t border-gray-800" 
-              style={{ 
-                background: 'linear-gradient(180deg, #121212 0%, #0f0f23 100%)',
-              }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="futuristic-card rounded-2xl p-6 sm:p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Brand Section */}
-              <div className="lg:col-span-2">
-                <img
-                  src="/IMG-20250305-WA0003-removebg-preview.png"
-                  alt="RARITONE"
-                  className="h-16 sm:h-20 w-auto mb-4"
-                  style={{ filter: 'brightness(1.1) contrast(1.05)' }}
-                />
-                <p className="text-gray-300 max-w-md leading-relaxed text-sm sm:text-base">
-                  Revolutionizing fashion with AI-powered body scanning technology. 
-                  Experience perfect fit and personalized style recommendations across India.
-                </p>
-              </div>
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
 
-              {/* Quick Links */}
-              <div>
-                <h3 className="font-semibold text-white mb-4 text-base sm:text-lg neon-blue">Quick Links</h3>
-                <ul className="space-y-2">
-                  <li><a href="/shipping" className="text-gray-300 hover:text-blue-400 text-sm sm:text-base transition-colors">Shipping & Delivery</a></li>
-                  <li><a href="/returns" className="text-gray-300 hover:text-blue-400 text-sm sm:text-base transition-colors">Returns & Exchanges</a></li>
-                  <li><a href="/faqs" className="text-gray-300 hover:text-blue-400 text-sm sm:text-base transition-colors">FAQs</a></li>
-                  <li><a href="/terms" className="text-gray-300 hover:text-blue-400 text-sm sm:text-base transition-colors">Terms & Conditions</a></li>
-                  <li><a href="/contact" className="text-gray-300 hover:text-blue-400 text-sm sm:text-base transition-colors">Contact Us</a></li>
-                </ul>
-              </div>
+.glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
 
-              {/* Contact Info */}
-              <div>
-                <h3 className="font-semibold text-white mb-4 text-base sm:text-lg neon-yellow">Contact</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <Mail size={16} className="text-gray-400" />
-                    <span className="text-gray-300 text-sm sm:text-base">
-                      hello@raritone.in
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <Phone size={16} className="text-gray-400" />
-                    <span className="text-gray-300 text-sm sm:text-base">
-                      +91 98765 43210
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <MapPin size={16} className="text-gray-400" />
-                    <span className="text-gray-300 text-sm sm:text-base">
-                      Mumbai, India
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+.neon-flicker {
+  animation: neon-flicker 2s ease-in-out infinite;
+}
 
-            <div className="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
-              <p className="text-gray-400 text-xs sm:text-sm">
-                © 2025 RARITONE. All rights reserved. | Powered by AI Fashion Technology | Made in India
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
+/* ENHANCED SCROLLBAR */
+::-webkit-scrollbar {
+  width: 6px;
+}
 
-      {/* Search Overlay */}
-      <SearchOverlay 
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-      />
+::-webkit-scrollbar-track {
+  background: transparent;
+}
 
-      {/* Product Modal */}
-      <ProductModal
-        product={selectedProduct}
-        isOpen={isModalOpen}
-        onClose={() => {
-          setIsModalOpen(false);
-          setSelectedProduct(null);
-        }}
-        onAddToCart={handleAddToCart}
-        onAddToWishlist={handleAddToWishlist}
-      />
+::-webkit-scrollbar-thumb {
+  background: rgba(176, 238, 255, 0.3);
+  border-radius: 3px;
+  backdrop-filter: blur(10px);
+}
 
-      {/* Add to Cart Toast */}
-      <AddToCartToast
-        isOpen={showCartToast}
-        onClose={() => setShowCartToast(false)}
-        item={cartToastItem}
-        onViewCart={() => {
-          setShowCartToast(false);
-          navigate('/cart');
-        }}
-        onCheckout={() => {
-          setShowCartToast(false);
-          navigate('/cart');
-        }}
-      />
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 215, 0, 0.5);
+}
 
-      {/* Chat Widget */}
-      <ChatWidget />
-    </div>
+/* RESPONSIVE BREAKPOINTS */
+@media (max-width: 639px) {
+  .glass-navbar {
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+  }
+  
+  .glass-card {
+    backdrop-filter: blur(15px) saturate(130%);
+    -webkit-backdrop-filter: blur(15px) saturate(130%);
+  }
+}
+
+/* FOCUS STATES */
+.focus-glass:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(176, 238, 255, 0.5);
+}
+
+/* FUTURISTIC BUTTON STYLES */
+.btn-glass {
+  background: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(192, 192, 192, 0.3);
+  color: #FFFFFF;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-glass:hover {
+  background: linear-gradient(135deg, rgba(176, 238, 255, 0.2) 0%, rgba(255, 215, 0, 0.2) 100%);
+  border-color: rgba(176, 238, 255, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(176, 238, 255, 0.3);
+}
+
+.btn-glass-primary {
+  background: linear-gradient(135deg, #B0EEFF 0%, #FFD700 100%);
+  color: #121212;
+  border: 1px solid rgba(255, 215, 0, 0.8);
+  font-weight: 600;
+}
+
+.btn-glass-primary:hover {
+  background: linear-gradient(135deg, #FFD700 0%, #B88FFF 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+/* HERO GRADIENT */
+.hero-gradient {
+  background: linear-gradient(135deg, 
+    rgba(18, 18, 18, 1) 0%,
+    rgba(26, 26, 26, 0.95) 30%,
+    rgba(15, 15, 35, 0.9) 70%,
+    rgba(176, 238, 255, 0.08) 100%
   );
-};
+}
 
-export default Index;
+/* TYPOGRAPHY */
+.text-hero {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-shadow: 0 0 20px rgba(176, 238, 255, 0.3);
+}
+
+.text-subtitle {
+  font-size: clamp(1.125rem, 3vw, 1.5rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  opacity: 0.9;
+  color: #E0E0E0;
+}
+
+/* MOBILE OPTIMIZATIONS */
+@media (max-width: 768px) {
+  .glass {
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+  
+  .glass-strong {
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+  }
+}
+
+/* PERFORMANCE OPTIMIZATIONS */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* LOADING STATES */
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(176, 238, 255, 0.05) 25%,
+    rgba(255, 215, 0, 0.1) 50%,
+    rgba(176, 238, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* 3D SCENE INTEGRATION */
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* NEON ACCENTS */
+.neon-blue {
+  color: #B0EEFF;
+  text-shadow: 0 0 10px rgba(176, 238, 255, 0.5);
+}
+
+.neon-yellow {
+  color: #FFD700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.neon-coral {
+  color: #FF7E79;
+  text-shadow: 0 0 10px rgba(255, 126, 121, 0.5);
+}
+
+.neon-purple {
+  color: #B88FFF;
+  text-shadow: 0 0 10px rgba(184, 143, 255, 0.5);
+}
+
+/* HOLOGRAPHIC BORDERS */
+.holographic-border {
+  border: 2px solid transparent;
+  background: linear-gradient(45deg, #B0EEFF, #FFD700, #FF7E79, #B88FFF) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+/* FUTURISTIC CARD STYLES */
+.futuristic-card {
+  background: rgba(26, 26, 26, 0.9);
+  border: 1px solid rgba(192, 192, 192, 0.25);
+  box-shadow: 
+    0 0 25px rgba(176, 238, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.futuristic-card:hover {
+  border-color: rgba(176, 238, 255, 0.5);
+  box-shadow: 
+    0 0 35px rgba(176, 238, 255, 0.25),
+    0 0 70px rgba(255, 215, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* NEW ARRIVAL BUBBLE FIX */
+.new-arrival-bubble {
+  background: linear-gradient(135deg, #FF7E79 0%, #FFD700 100%);
+  color: #FFFFFF;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.out-of-stock-bubble {
+  background: rgba(255, 126, 121, 0.9);
+  color: #FFFFFF;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}

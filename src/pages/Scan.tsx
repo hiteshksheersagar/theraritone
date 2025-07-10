@@ -17,6 +17,22 @@ const Scan = () => {
   const [countdown, setCountdown] = useState(0);
   const [scans, setScans] = useState<ScanData[]>([]);
   const [stream, setStream] = useState<MediaStream | null>(null);
+  const [scanHistory, setScanHistory] = useState<any[]>([
+    {
+      id: 'scan_001',
+      date: '2024-01-15',
+      measurements: { height: 175, chest: 98, waist: 82 },
+      accuracy: 95,
+      device: 'mobile'
+    },
+    {
+      id: 'scan_002', 
+      date: '2024-01-10',
+      measurements: { height: 175, chest: 97, waist: 81 },
+      accuracy: 92,
+      device: 'desktop'
+    }
+  ]);
 
   useEffect(() => {
     if (user) {
@@ -146,7 +162,16 @@ const Scan = () => {
   }, []);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#1a1a1a' }}>
+    <div className="min-h-screen relative" style={{ 
+      background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #1e3a8a 100%)'
+    }}>
+      {/* Background decorations */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-cyan-500/8 to-blue-500/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-gradient-to-r from-indigo-500/6 to-purple-500/6 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
+      </div>
+      
       <Navbar 
         onSearchOpen={() => {}}
         onCartOpen={() => {}}
@@ -184,7 +209,7 @@ const Scan = () => {
               <div className="text-center p-4 rounded-lg border border-[#C0C0C0]/20" style={{ backgroundColor: 'rgba(224, 224, 224, 0.05)' }}>
                 <div className="text-2xl font-bold text-[#FFFFFF]">
                   {scans.length > 0 
-                    ? new Date(scans[0].scanTime).toLocaleDateString()
+                    ? new Date(scanHistory[0]?.date || Date.now()).toLocaleDateString()
                     : 'Never'
                   }
                 </div>
@@ -193,17 +218,17 @@ const Scan = () => {
               
               <div className="text-center p-4 rounded-lg border border-[#C0C0C0]/20" style={{ backgroundColor: 'rgba(224, 224, 224, 0.05)' }}>
                 <div className="text-2xl font-bold text-[#FFFFFF]">
-                  {scans.reduce((total, scan) => total + scan.tryOnCount, 0)}
+                  {scanHistory.length > 0 ? scanHistory.reduce((total, scan) => total + (scan.accuracy || 0), 0) / scanHistory.length : 0}%
                 </div>
                 <div className="text-sm text-[#C0C0C0]">Virtual Try-Ons</div>
               </div>
               
               <Button 
-                onClick={() => navigate('/scan-history')}
+                onClick={() => navigate('/scan-reports')}
                 variant="outline" 
-                className="w-full border-[#C0C0C0]/30 text-[#FFFFFF] hover:bg-[#E0E0E0]/10"
+                className="w-full border-[#B0EEFF]/50 text-[#B0EEFF] hover:bg-[#B0EEFF]/20 hover:border-[#B0EEFF] transition-all duration-200 bg-[#B0EEFF]/5"
               >
-                View Scan History
+                View Scan Reports
               </Button>
             </div>
           </div>
@@ -246,26 +271,26 @@ const Scan = () => {
             {/* Tips Section */}
             <div className="border rounded-lg p-6 mb-6" style={{ backgroundColor: 'rgba(224, 224, 224, 0.05)', borderColor: '#C0C0C0' }}>
               <h3 className="font-medium text-[#FFFFFF] mb-4 flex items-center">
-                <Lightbulb className="mr-2" size={20} />
+                <Lightbulb className="mr-2 text-[#FFD700]" size={20} />
                 Scan Tips for Best Results:
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-[#C0C0C0]">
                 <div className="flex items-start space-x-2">
-                  <Lightbulb size={16} className="mt-0.5 flex-shrink-0" />
+                  <Lightbulb size={16} className="mt-0.5 flex-shrink-0 text-[#B0EEFF]" />
                   <div>
                     <div className="font-medium text-[#FFFFFF]">Good Lighting</div>
                     <div>Ensure bright, even lighting without shadows</div>
                   </div>
                 </div>
                 <div className="flex items-start space-x-2">
-                  <User size={16} className="mt-0.5 flex-shrink-0" />
+                  <User size={16} className="mt-0.5 flex-shrink-0 text-[#B0EEFF]" />
                   <div>
                     <div className="font-medium text-[#FFFFFF]">Fitted Clothing</div>
                     <div>Wear form-fitting clothes for accurate measurements</div>
                   </div>
                 </div>
                 <div className="flex items-start space-x-2">
-                  <Clock size={16} className="mt-0.5 flex-shrink-0" />
+                  <Clock size={16} className="mt-0.5 flex-shrink-0 text-[#B0EEFF]" />
                   <div>
                     <div className="font-medium text-[#FFFFFF]">Stay Still</div>
                     <div>Keep steady during the 30-second scan</div>
